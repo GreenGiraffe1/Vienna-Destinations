@@ -17,7 +17,7 @@
 			//  I'll fashion this model after...  the book example - so I get the hang of this.
 			//  	It's a list of book titles. Each book has only the attribute "title".
 			var Model = {
-				bookList: [
+				bookCollection: [
 					{title: "Book1"},
 					{title: "Book2"},
 					{title: "Book3"},
@@ -26,8 +26,38 @@
 				]
 			};
 			// console.log(Model.bookList[0]['title']);  //  Verified that this data-structure is working
+			// console.log(Model.bookList.length);
 
-			//  This is a test change
+			var ViewModel = function() {
+				http://knockoutjs.com/documentation/computedObservables.html#managing-this
+				var self = this;
+
+				self.bookList = ko.observableArray();
+
+				for (var i = 0; i < Model.bookCollection.length; i++) {
+					console.log(i);  //  Testing to make sure it works.
+					self.bookList.push(Model.bookCollection[i]);
+
+
+
+				}
+
+				console.log(this.bookList);
+
+				// for (var i = 0; i < this.bookList.length; i++) {
+				// 	console.log(i);
+				// }
+
+
+
+
+
+
+
+			}
+
+			ViewModel();
+
 
 		</script>
 
