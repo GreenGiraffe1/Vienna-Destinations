@@ -23,21 +23,28 @@
 	           		<input type="checkbox" name="toggleMarkers" value="yes" checked>Show Markers?<br>
 	           		<hr>
 	           		<div class="list-class">
-	               		<h3>Locations List:</h3>
-	               		<div id="list-items" class="list-entries">
-	               		</div>
-	           		</div>
-	        	</div>
-	      	</div>
-	      	<div id="map"></div>
-	    </div>
+	               		<!-- <h3>Book List:</h3>
+						<ul data-bind="foreach: bookList">
+							<li data-bind="text: title"></li>
+						</ul> -->
 
-		<h1>Testing my KnockOutJS Skills</h1>
+						<h3>Locations List:</h3>
+						<ul data-bind="foreach: viennaList">
+							<li data-bind="text: name"></li>
+						</ul>
+
+
+	               	</div>
+	           	</div>
+	        </div>
+	     </div>
+	     <div id="map"></div>
+
+		<!-- <h1>Testing my KnockOutJS Skills</h1>
 
 		<ul data-bind="foreach: bookList">
 			<li data-bind="text: title"></li>
-
-		</ul>
+		</ul> -->
 
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.1/knockout-min.js"></script>
 
@@ -96,35 +103,48 @@
 	        };
 
 
-			var BookModel = {
-				bookCollection: [
-					{title: "Book1"},
-					{title: "Book2"},
-					{title: "Book3"},
-					{title: "Book4"},
-					{title: "Book5"}
-				]
-			};
+			// var BookModel = {
+			// 	bookCollection: [
+			// 		{title: "Book1"},
+			// 		{title: "Book2"},
+			// 		{title: "Book3"},
+			// 		{title: "Book4"},
+			// 		{title: "Book5"}
+			// 	]
+			// };
 			// console.log(Model.bookList[0]['title']);  //  Verified that this data-structure is working
 			// console.log(Model.bookList.length);
 
 			var ViewModel = function() {
-				http://knockoutjs.com/documentation/computedObservables.html#managing-this
+				// http://knockoutjs.com/documentation/computedObservables.html#managing-this
 				var self = this;
+				// self.bookList = ko.observableArray();
+				// for (var i = 0; i < BookModel.bookCollection.length; i++) {
+				// 	// console.log(i);  //  Testing to make sure it works.
+				// 	self.bookList.push(BookModel.bookCollection[i]);
+				// }
 
-				self.bookList = ko.observableArray();
-
-				for (var i = 0; i < BookModel.bookCollection.length; i++) {
-					// console.log(i);  //  Testing to make sure it works.
-					self.bookList.push(BookModel.bookCollection[i]);
+				self.viennaList = ko.observableArray();
+				for (var i = 0; i < ViennaModel.locations.length; i++) {
+					self.viennaList.push(ViennaModel.locations[i]);
+					// console.log(self.viennaList()[i]['name']);  //  This confirms that it works
 				}
+
+
+
+
+
+
+
+
+
 
 				// console.log(this.bookList());
 
-				for (var i = 0; i < this.bookList().length; i++) {
-					// console.log(i);
-					console.log(this.bookList()[i]['title']);  //  Works - Fixed it by REMEMBERING - to put the () after the observables name.
-				}
+				// for (var i = 0; i < this.bookList().length; i++) {
+				// 	// console.log(i);
+				// 	console.log(this.bookList()[i]['title']);  //  Works - Fixed it by REMEMBERING - to put the () after the observables name.
+				// }
 			}
 			var vm = new ViewModel();
 
