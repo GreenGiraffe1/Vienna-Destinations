@@ -23,7 +23,57 @@
 
 			//  I'll fashion this model after...  the book example - so I get the hang of this.
 			//  	It's a list of book titles. Each book has only the attribute "title".
-			var Model = {
+
+			var ViennaModel = {
+	            locations: [
+	                {
+	                    name: 'WW2 Flak Tower',
+	                    coordinates: {lat: 48.22563, lng: 16.372815},
+	                    wikiPageID: 1369643,
+	                    officialWikiTitle: null
+	                },
+	                {
+	                    name: 'Vienna Rose Garden',
+	                    coordinates: {lat: 48.208056, lng: 16.361111},
+	                    wikiPageID: 22533198,
+	                    officialWikiTitle: null
+
+	                },
+	                {
+	                    name: "Mozart's House",
+	                    coordinates: {lat: 48.207778, lng: 16.375278},
+	                    wikiPageID: 28369776,
+	                    officialWikiTitle: null
+	                },
+	                {
+	                    name: 'Schönbrunn Palace',
+	                    coordinates: {lat: 48.184516, lng: 16.311865},
+	                    wikiPageID: 165202,
+	                    officialWikiTitle: null
+	                },
+	                {
+	                    name: 'Vienna Opera House',
+	                    coordinates: {lat: 48.202778, lng: 16.369111},
+	                    wikiPageID: 379066,
+	                    officialWikiTitle: null
+	                },
+	                {
+	                    name: 'Hofburg Palace',
+	                    coordinates: {lat: 48.206507, lng: 16.365262},
+	                    wikiPageID: 1651794,
+	                    officialWikiTitle: null
+	                },
+	                {
+	                    name: 'Museum of Military History',
+	                    coordinates: {lat: 48.185278, lng: 16.3875},
+	                    wikiPageID: 2680555,
+	                    officialWikiTitle: null
+	                }
+	            ]
+	        };
+
+
+			var BookModel = {
 				bookCollection: [
 					{title: "Book1"},
 					{title: "Book2"},
@@ -41,7 +91,7 @@
 
 				self.bookList = ko.observableArray();
 
-				for (var i = 0; i < Model.bookCollection.length; i++) {
+				for (var i = 0; i < BookModel.bookCollection.length; i++) {
 					// console.log(i);  //  Testing to make sure it works.
 					self.bookList.push(Model.bookCollection[i]);
 				}
