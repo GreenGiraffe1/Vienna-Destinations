@@ -7,11 +7,18 @@
 	</head>
 	<body>
 
+
+
 		<h1>Testing my KnockOutJS Skills</h1>
+
+		<ul data-bind="foreach: bookList">
+			<li data-bind="text: title"></li>
+
+		</ul>
 
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.1/knockout-min.js"></script>
 
-	<script>
+		<script>
 			//  This is where my JS code goes
 
 			//  I'll fashion this model after...  the book example - so I get the hang of this.
@@ -35,31 +42,24 @@
 				self.bookList = ko.observableArray();
 
 				for (var i = 0; i < Model.bookCollection.length; i++) {
-					console.log(i);  //  Testing to make sure it works.
+					// console.log(i);  //  Testing to make sure it works.
 					self.bookList.push(Model.bookCollection[i]);
-
-
-
 				}
 
-				console.log(this.bookList);
+				// console.log(this.bookList());
 
-				// for (var i = 0; i < this.bookList.length; i++) {
-				// 	console.log(i);
-				// }
-
-
-
-
-
-
-
+				for (var i = 0; i < this.bookList().length; i++) {
+					// console.log(i);
+					console.log(this.bookList()[i]['title']);  //  Works - Fixed it by REMEMBERING - to put the () after the observables name.
+				}
 			}
+			var vm = new ViewModel();
 
-			ViewModel();
-
-
+			ko.applyBindings(vm);
+			// ViewModel();
 		</script>
+
+
 
 
 	</body>
