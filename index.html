@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<title>Neighborhood Map REFACTOR</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="style.css">
 
 	</head>
 	<body>
@@ -33,7 +33,7 @@
 	    </div>
 
 		<h1>Testing my KnockOutJS Skills</h1>
-		
+
 		<ul data-bind="foreach: bookList">
 			<li data-bind="text: title"></li>
 
@@ -116,7 +116,7 @@
 
 				for (var i = 0; i < BookModel.bookCollection.length; i++) {
 					// console.log(i);  //  Testing to make sure it works.
-					self.bookList.push(Model.bookCollection[i]);
+					self.bookList.push(BookModel.bookCollection[i]);
 				}
 
 				// console.log(this.bookList());
@@ -130,7 +130,85 @@
 
 			ko.applyBindings(vm);
 			// ViewModel();
+
+
+
+			var map;
+        	function initMap() {
+	            // Constructor creates a new map - only center and zoom are required.
+	            map = new google.maps.Map(document.getElementById('map'), {
+	                center: {lat: 48.205, lng: 16.366667},
+	                zoom: 13,
+	                mapTypeControl: false
+	            });
+
+	            // Create a new blank array for all the listing markers.
+	            var markers = [];
+
+	            var infoWindow = new google.maps.InfoWindow({
+	            });
+
+            //  Create Map Markers by Looping through "locations" array
+            // for (var i = 0; i < Model.locations.length; i++) {
+            //     var marker = new google.maps.Marker({
+            //         position: new google.maps.LatLng(Model.locations[i].coordinates.lat(), Model.locations[i].coordinates.lng()),
+            //         map: map,
+            //         title: Model.locations[i].name(),
+            //         summaryID: Model.locations[i].wikiPageID(),
+            //         id: i
+            //     });
+            //     //  Add each individual marker to the "markers" array
+            //     markers.push(marker);
+			//
+			//
+            //     //  Set the animation for clicking on any map marker   TODO: Use this syntax for list-view items
+            //     marker.addListener('click', function() {
+            //         // this.setAnimation(google.maps.Animation.DROP);  //  Wow - all I had to do was change "marker" to "this"
+            //         populateInfoWindow(this, infoWindow);  //  Call's the info-window function - will populate with right information
+            //     });
+            // }
+			//
+            // function toggleBounce() {
+            //     if (marker.getAnimation() !== null) {
+            //         marker.setAnimation(null);
+            //     } else {
+            //         marker.setAnimation(google.maps.Animation.BOUNCE);
+            //     }
+            // }
+
+            // document.getElementById('show-listings').addEventListener('click', showListings);
+            // document.getElementById('hide-listings').addEventListener('click', hideListings);
+
+            // This function will loop through the markers array and display them all.
+            // function showListings() {
+            //   var bounds = new google.maps.LatLngBounds();
+            //   // Extend the boundaries of the map for each marker and display the marker
+            //   for (var i = 0; i < markers.length; i++) {
+            //     markers[i].setMap(map);
+            //     bounds.extend(markers[i].position);
+            //   }
+            //   map.fitBounds(bounds);
+            // }
+			//
+            // // This function will loop through the listings and hide them all.
+            // function hideListings() {
+            //     for (var i = 0; i < markers.length; i++) {
+            //         markers[i].setMap(null);
+            //     }
+            // }
+			//
+			// listPopulator(markers, infoWindow);
+
+
+
+
+        }
 		</script>
+
+
+		<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1mSv0XTcysnwSGaJCjUUbm-eMtFNEZGs&v=3&callback=initMap">
+    	</script>
 
 
 
