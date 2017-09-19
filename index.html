@@ -5,10 +5,8 @@
 		<title>Neighborhood Map REFACTOR</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="style.css">
-
 	</head>
 	<body>
-
 		<div class="container">
 	      	<div class="options-box">
 
@@ -19,27 +17,19 @@
 	           		<input type="checkbox" name="toggleMarkers" value="yes" checked>Show Markers?<br>
 	           		<hr>
 	           		<div class="list-class">
-
 						<h3>Locations List:</h3>
 						<ul data-bind="foreach: viennaList">
 							<li data-bind="text: name"></li>
 						</ul>
-
-
 	               	</div>
 	           	</div>
 	        </div>
 	     </div>
 	     <div id="map"></div>
-
 		 <script
          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1mSv0XTcysnwSGaJCjUUbm-eMtFNEZGs&v=3&callback=ViewModel">
      	</script>
-
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.1/knockout-min.js"></script>
-
-
-
 		<script>
 
 			var ViennaModel = {
@@ -90,8 +80,6 @@
 	            ]
 	        };
 
-
-
 			// var map;
         	function initMap(list) {
 	            // Constructor creates a new map - only center and zoom are required.
@@ -100,7 +88,6 @@
 	                zoom: 13,
 	                mapTypeControl: false
 	            });
-
 
 	            //Create a new blank array for all the listing markers.
 	            var markers = [];
@@ -120,13 +107,7 @@
 	                markers.push(marker);
 					// console.log(marker.title);
 				}
-
-				// console.log(list);
-
-
 			}
-
-
 			var ViewModel = function() {
 				// http://knockoutjs.com/documentation/computedObservables.html#managing-this
 				var self = this;
@@ -138,33 +119,11 @@
 				}
 				var text = 'you';
 				initMap(self.viennaList());
-
-				// var markers = [];
-				//
-				// var infoWindow = new google.maps.InfoWindow({
-	            // });
-				//
-				//  Create map-markers, by looping through the "self.viennaList observable array"
-				// for (var i = 0; i < self.viennaList.length; i++) {
-				// 	var marker = new google.maps.Marker({
-	            //         position: new google.maps.LatLng(self.viennaList()[i]['coordinates']['lat'], self.viennaList()[i]['coordinates']['lng']),
-				// 		//.locations[i].coordinates.lat(), Model.locations[i].coordinates.lng()),
-	            //         map: map
-	            //         // title: Model.locations[i].name(),
-	            //         // summaryID: Model.locations[i].wikiPageID(),
-	            //         // id: i
-	            //     });
-	            //     //  Add each individual marker to the "markers" array
-	            //     markers.push(marker);
-				// }
-
-
 			}
 
 			var vm = new ViewModel();
 
 			ko.applyBindings(vm);
-			// ViewModel();
 
 
 
@@ -222,8 +181,5 @@
 
         // }
 		</script>
-
-
-
 	</body>
 </html>
