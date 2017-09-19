@@ -60,8 +60,7 @@ function initMap(list) {
 function markerMaker(list, map) {
 	//Create a new blank array for all the listing markers.
 	var markers = [];
-	var infoWindow = new google.maps.InfoWindow({
-	});
+	var infoWindow = new google.maps.InfoWindow({});
 
 	for (var i = 0; i < list.length; i++) {
 		var marker = new google.maps.Marker({
@@ -73,35 +72,27 @@ function markerMaker(list, map) {
 		});
 		//  Add each individual marker to the "markers" array
 		markers.push(marker);
-		// console.log(marker.title);
-
 		//  Set the animation for clicking on any map marker   TODO: Use this syntax for list-view items
 		marker.addListener('click', function() {
-			// this.setAnimation(google.maps.Animation.DROP);  //  Wow - all I had to do was change "marker" to "this"
 			populateInfoWindow(this, infoWindow);  //  Call's the info-window function - will populate with right information
 		});
 	}
 }
 
 function populateInfoWindow(marker, infowindow) {
-// retrieveWikiInfo(marker.summaryID);
-
 	var wikiPageURL = "https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&pageids=" + marker.summaryID + "&exintro=1";
 	$.ajax({ url : wikiPageURL, dataType : "jsonp",
 		success : function(response) {
 			var wikiSummary = response['query']['pages'][marker.summaryID]['extract'];
 			infowindow.setContent('<h3 id="location-title">' + marker.title + '</h3><div id="summary">' + wikiSummary + '</div>');
 			marker.setAnimation(google.maps.Animation.DROP);  //  Wow - all I had to do was change "marker" to "this"
-
 			infowindow.open(map, marker);
 		}
 	});
 }
 
 var ViewModel = function() {
-	// http://knockoutjs.com/documentation/computedObservables.html#managing-this
 	var self = this;
-
 	self.viennaList = ko.observableArray();
 	for (var i = 0; i < ViennaModel.locations.length; i++) {
 		self.viennaList.push(ViennaModel.locations[i]);
