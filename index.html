@@ -32,7 +32,13 @@
 	     </div>
 	     <div id="map"></div>
 
+		 <script async defer
+         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1mSv0XTcysnwSGaJCjUUbm-eMtFNEZGs&v=3&callback=initMap">
+     	</script>
+
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.1/knockout-min.js"></script>
+
+
 
 		<script>
 
@@ -84,21 +90,7 @@
 	            ]
 	        };
 
-			var ViewModel = function() {
-				// http://knockoutjs.com/documentation/computedObservables.html#managing-this
-				var self = this;
 
-				self.viennaList = ko.observableArray();
-				for (var i = 0; i < ViennaModel.locations.length; i++) {
-					self.viennaList.push(ViennaModel.locations[i]);
-					// console.log(self.viennaList()[i]['name']);  //  This confirms that it works
-				}
-
-			}
-			var vm = new ViewModel();
-
-			ko.applyBindings(vm);
-			// ViewModel();
 
 			var map;
         	function initMap() {
@@ -110,22 +102,64 @@
 	            });
 
 	            // Create a new blank array for all the listing markers.
-	            var markers = [];
+	            // var markers = [];
 
-	            var infoWindow = new google.maps.InfoWindow({
+	            // var infoWindow = new google.maps.InfoWindow({
+	            // });
+			}
+
+
+			var ViewModel = function() {
+				// http://knockoutjs.com/documentation/computedObservables.html#managing-this
+				var self = this;
+
+				self.viennaList = ko.observableArray();
+				for (var i = 0; i < ViennaModel.locations.length; i++) {
+					self.viennaList.push(ViennaModel.locations[i]);
+					// console.log(self.viennaList()[i]['name']);  //  This confirms that it works
+				}
+
+				var markers = [];
+
+				var infoWindow = new google.maps.InfoWindow({
 	            });
+
+				//  Create map-markers, by looping through the "self.viennaList observable array"
+				for (var i = 0; i < self.viennaList.length; i++) {
+					var marker = new google.maps.Marker({
+	                    position: new google.maps.LatLng(self.viennaList()[i]['coordinates']['lat'], self.viennaList()[i]['coordinates']['lng']),
+						//.locations[i].coordinates.lat(), Model.locations[i].coordinates.lng()),
+	                    map: map
+	                    // title: Model.locations[i].name(),
+	                    // summaryID: Model.locations[i].wikiPageID(),
+	                    // id: i
+	                });
+	                //  Add each individual marker to the "markers" array
+	                markers.push(marker);
+				}
+
+
+			}
+
+			var vm = new ViewModel();
+
+			ko.applyBindings(vm);
+			// ViewModel();
+
+
+
 
             // Create Map Markers by Looping through "locations" array
             // for (var i = 0; i < Model.locations.length; i++) {
-            //     var marker = new google.maps.Marker({
-            //         position: new google.maps.LatLng(Model.locations[i].coordinates.lat(), Model.locations[i].coordinates.lng()),
-            //         map: map,
-            //         title: Model.locations[i].name(),
-            //         summaryID: Model.locations[i].wikiPageID(),
-            //         id: i
-            //     });
-            //     //  Add each individual marker to the "markers" array
-            //     markers.push(marker);
+                // var marker = new google.maps.Marker({
+                //     position: new google.maps.LatLng(Model.locations[i].coordinates.lat(), Model.locations[i].coordinates.lng()),
+                //     map: map,
+                //     title: Model.locations[i].name(),
+                //     summaryID: Model.locations[i].wikiPageID(),
+                //     id: i
+                // });
+                //  Add each individual marker to the "markers" array
+                // markers.push(marker);
 			//
 			//
             //     //  Set the animation for clicking on any map marker   TODO: Use this syntax for list-view items
@@ -166,12 +200,10 @@
 			//
 			// listPopulator(markers, infoWindow);
 
-        }
+        // }
 		</script>
 
-		<script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1mSv0XTcysnwSGaJCjUUbm-eMtFNEZGs&v=3&callback=initMap">
-    	</script>
+
 
 	</body>
 </html>
