@@ -93,7 +93,7 @@
 
 
 			// var map;
-        	function initMap() {
+        	function initMap(list) {
 	            // Constructor creates a new map - only center and zoom are required.
 	            var map = new google.maps.Map(document.getElementById('map'), {
 	                center: {lat: 48.205, lng: 16.366667},
@@ -101,11 +101,29 @@
 	                mapTypeControl: false
 	            });
 
-	            // Create a new blank array for all the listing markers.
-	            // var markers = [];
 
-	            // var infoWindow = new google.maps.InfoWindow({
-	            // });
+	            //Create a new blank array for all the listing markers.
+	            var markers = [];
+
+	            var infoWindow = new google.maps.InfoWindow({
+	            });
+
+				for (var i = 0; i < list.length; i++) {
+					var marker = new google.maps.Marker({
+	                    position: new google.maps.LatLng(list[i]['coordinates']['lat'], list[i]['coordinates']['lng']),
+	                    map: map,
+	                    title: list[i].name,
+	                    summaryID: list[i].wikiPageID,
+	                    id: i
+	                });
+	                //  Add each individual marker to the "markers" array
+	                markers.push(marker);
+					// console.log(marker.title);
+				}
+
+				// console.log(list);
+
+
 			}
 
 
@@ -118,15 +136,15 @@
 					self.viennaList.push(ViennaModel.locations[i]);
 					// console.log(self.viennaList()[i]['name']);  //  This confirms that it works
 				}
-
-				initMap();
+				var text = 'you';
+				initMap(self.viennaList());
 
 				// var markers = [];
 				//
 				// var infoWindow = new google.maps.InfoWindow({
 	            // });
 				//
-				// //  Create map-markers, by looping through the "self.viennaList observable array"
+				//  Create map-markers, by looping through the "self.viennaList observable array"
 				// for (var i = 0; i < self.viennaList.length; i++) {
 				// 	var marker = new google.maps.Marker({
 	            //         position: new google.maps.LatLng(self.viennaList()[i]['coordinates']['lat'], self.viennaList()[i]['coordinates']['lng']),
