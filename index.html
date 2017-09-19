@@ -119,24 +119,26 @@
 					// console.log(self.viennaList()[i]['name']);  //  This confirms that it works
 				}
 
-				var markers = [];
+				initMap();
 
-				var infoWindow = new google.maps.InfoWindow({
-	            });
-
-				//  Create map-markers, by looping through the "self.viennaList observable array"
-				for (var i = 0; i < self.viennaList.length; i++) {
-					var marker = new google.maps.Marker({
-	                    position: new google.maps.LatLng(self.viennaList()[i]['coordinates']['lat'], self.viennaList()[i]['coordinates']['lng']),
-						//.locations[i].coordinates.lat(), Model.locations[i].coordinates.lng()),
-	                    map: map
-	                    // title: Model.locations[i].name(),
-	                    // summaryID: Model.locations[i].wikiPageID(),
-	                    // id: i
-	                });
-	                //  Add each individual marker to the "markers" array
-	                markers.push(marker);
-				}
+				// var markers = [];
+				//
+				// var infoWindow = new google.maps.InfoWindow({
+	            // });
+				//
+				// //  Create map-markers, by looping through the "self.viennaList observable array"
+				// for (var i = 0; i < self.viennaList.length; i++) {
+				// 	var marker = new google.maps.Marker({
+	            //         position: new google.maps.LatLng(self.viennaList()[i]['coordinates']['lat'], self.viennaList()[i]['coordinates']['lng']),
+				// 		//.locations[i].coordinates.lat(), Model.locations[i].coordinates.lng()),
+	            //         map: map
+	            //         // title: Model.locations[i].name(),
+	            //         // summaryID: Model.locations[i].wikiPageID(),
+	            //         // id: i
+	            //     });
+	            //     //  Add each individual marker to the "markers" array
+	            //     markers.push(marker);
+				// }
 
 
 			}
