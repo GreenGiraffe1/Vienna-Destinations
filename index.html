@@ -9,10 +9,6 @@
 	</head>
 	<body>
 
-
-
-
-
 		<div class="container">
 	      	<div class="options-box">
 
@@ -23,10 +19,6 @@
 	           		<input type="checkbox" name="toggleMarkers" value="yes" checked>Show Markers?<br>
 	           		<hr>
 	           		<div class="list-class">
-	               		<!-- <h3>Book List:</h3>
-						<ul data-bind="foreach: bookList">
-							<li data-bind="text: title"></li>
-						</ul> -->
 
 						<h3>Locations List:</h3>
 						<ul data-bind="foreach: viennaList">
@@ -40,19 +32,9 @@
 	     </div>
 	     <div id="map"></div>
 
-		<!-- <h1>Testing my KnockOutJS Skills</h1>
-
-		<ul data-bind="foreach: bookList">
-			<li data-bind="text: title"></li>
-		</ul> -->
-
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.1/knockout-min.js"></script>
 
 		<script>
-			//  This is where my JS code goes
-
-			//  I'll fashion this model after...  the book example - so I get the hang of this.
-			//  	It's a list of book titles. Each book has only the attribute "title".
 
 			var ViennaModel = {
 	            locations: [
@@ -102,27 +84,9 @@
 	            ]
 	        };
 
-
-			// var BookModel = {
-			// 	bookCollection: [
-			// 		{title: "Book1"},
-			// 		{title: "Book2"},
-			// 		{title: "Book3"},
-			// 		{title: "Book4"},
-			// 		{title: "Book5"}
-			// 	]
-			// };
-			// console.log(Model.bookList[0]['title']);  //  Verified that this data-structure is working
-			// console.log(Model.bookList.length);
-
 			var ViewModel = function() {
 				// http://knockoutjs.com/documentation/computedObservables.html#managing-this
 				var self = this;
-				// self.bookList = ko.observableArray();
-				// for (var i = 0; i < BookModel.bookCollection.length; i++) {
-				// 	// console.log(i);  //  Testing to make sure it works.
-				// 	self.bookList.push(BookModel.bookCollection[i]);
-				// }
 
 				self.viennaList = ko.observableArray();
 				for (var i = 0; i < ViennaModel.locations.length; i++) {
@@ -130,28 +94,11 @@
 					// console.log(self.viennaList()[i]['name']);  //  This confirms that it works
 				}
 
-
-
-
-
-
-
-
-
-
-				// console.log(this.bookList());
-
-				// for (var i = 0; i < this.bookList().length; i++) {
-				// 	// console.log(i);
-				// 	console.log(this.bookList()[i]['title']);  //  Works - Fixed it by REMEMBERING - to put the () after the observables name.
-				// }
 			}
 			var vm = new ViewModel();
 
 			ko.applyBindings(vm);
 			// ViewModel();
-
-
 
 			var map;
         	function initMap() {
@@ -168,7 +115,7 @@
 	            var infoWindow = new google.maps.InfoWindow({
 	            });
 
-            //  Create Map Markers by Looping through "locations" array
+            // Create Map Markers by Looping through "locations" array
             // for (var i = 0; i < Model.locations.length; i++) {
             //     var marker = new google.maps.Marker({
             //         position: new google.maps.LatLng(Model.locations[i].coordinates.lat(), Model.locations[i].coordinates.lng()),
@@ -219,19 +166,12 @@
 			//
 			// listPopulator(markers, infoWindow);
 
-
-
-
         }
 		</script>
-
 
 		<script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1mSv0XTcysnwSGaJCjUUbm-eMtFNEZGs&v=3&callback=initMap">
     	</script>
-
-
-
 
 	</body>
 </html>
