@@ -32,8 +32,8 @@
 	     </div>
 	     <div id="map"></div>
 
-		 <script async defer
-         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1mSv0XTcysnwSGaJCjUUbm-eMtFNEZGs&v=3&callback=initMap">
+		 <script
+         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1mSv0XTcysnwSGaJCjUUbm-eMtFNEZGs&v=3&callback=ViewModel">
      	</script>
 
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.1/knockout-min.js"></script>
@@ -92,10 +92,10 @@
 
 
 
-			var map;
+			// var map;
         	function initMap() {
 	            // Constructor creates a new map - only center and zoom are required.
-	            map = new google.maps.Map(document.getElementById('map'), {
+	            var map = new google.maps.Map(document.getElementById('map'), {
 	                center: {lat: 48.205, lng: 16.366667},
 	                zoom: 13,
 	                mapTypeControl: false
