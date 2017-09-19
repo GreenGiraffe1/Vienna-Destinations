@@ -135,9 +135,6 @@
 	            });
 	        }
 
-
-
-
 			var ViewModel = function() {
 				// http://knockoutjs.com/documentation/computedObservables.html#managing-this
 				var self = this;
@@ -155,61 +152,6 @@
 
 			ko.applyBindings(vm);
 
-
-
-
-            // Create Map Markers by Looping through "locations" array
-            // for (var i = 0; i < Model.locations.length; i++) {
-            //     var marker = new google.maps.Marker({
-            //         position: new google.maps.LatLng(Model.locations[i].coordinates.lat(), Model.locations[i].coordinates.lng()),
-            //         map: map,
-            //         title: Model.locations[i].name(),
-            //         summaryID: Model.locations[i].wikiPageID(),
-            //         id: i
-            //     });
-            //      Add each individual marker to the "markers" array
-            //     markers.push(marker);
-			//
-			//
-            //     //  Set the animation for clicking on any map marker   TODO: Use this syntax for list-view items
-            //     marker.addListener('click', function() {
-            //         // this.setAnimation(google.maps.Animation.DROP);  //  Wow - all I had to do was change "marker" to "this"
-            //         populateInfoWindow(this, infoWindow);  //  Call's the info-window function - will populate with right information
-            //     });
-            // }
-			//
-            // function toggleBounce() {
-            //     if (marker.getAnimation() !== null) {
-            //         marker.setAnimation(null);
-            //     } else {
-            //         marker.setAnimation(google.maps.Animation.BOUNCE);
-            //     }
-            // }
-
-            // document.getElementById('show-listings').addEventListener('click', showListings);
-            // document.getElementById('hide-listings').addEventListener('click', hideListings);
-
-            // This function will loop through the markers array and display them all.
-            // function showListings() {
-            //   var bounds = new google.maps.LatLngBounds();
-            //   // Extend the boundaries of the map for each marker and display the marker
-            //   for (var i = 0; i < markers.length; i++) {
-            //     markers[i].setMap(map);
-            //     bounds.extend(markers[i].position);
-            //   }
-            //   map.fitBounds(bounds);
-            // }
-			//
-            // // This function will loop through the listings and hide them all.
-            // function hideListings() {
-            //     for (var i = 0; i < markers.length; i++) {
-            //         markers[i].setMap(null);
-            //     }
-            // }
-			//
-			// listPopulator(markers, infoWindow);
-
-        // }
 		</script>
 	</body>
 </html>
