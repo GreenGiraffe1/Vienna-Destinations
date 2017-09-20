@@ -47,14 +47,15 @@ var ViennaModel = {
 };
 
 // var map;
-function initMap(list) {
+function initMap() {
 	// Constructor creates a new map - only center and zoom are required.
 	var map = new google.maps.Map(document.getElementById('map'), {
 		center: {lat: 48.205, lng: 16.366667},
 		zoom: 13,
 		mapTypeControl: false
 	});
-	markerMaker(list, map)
+	// markerMaker(list, map)
+	return map;
 }
 
 function markerMaker(list, map) {
@@ -112,8 +113,13 @@ var ViewModel = function() {
 		self.viennaList.push(ViennaModel.locations[i]);
 		// console.log(self.viennaList()[i]['name']);  //  This confirms that it works
 	}
-	var text = 'you';
-	initMap(self.viennaList());
+	self.mapObject = initMap();
+	// console.log(self.mapObject);
+	markerMaker(self.viennaList(), self.mapObject);
+
+
+
+
 }
 
 var vm = new ViewModel();
