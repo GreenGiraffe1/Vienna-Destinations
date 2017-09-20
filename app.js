@@ -91,6 +91,12 @@ function populateInfoWindow(marker, infowindow) {
 	});
 }
 
+function listviewClickListener(data, event) {
+	console.log(data['name']);
+	// populateInfoWindow(data, infowindow)
+	// var infowindow = new google.maps.InfoWindow({});
+}
+
 var ViewModel = function() {
 	var self = this;
 	self.viennaList = ko.observableArray();
