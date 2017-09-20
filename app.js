@@ -92,9 +92,17 @@ function populateInfoWindow(marker, infowindow) {
 }
 
 function listviewClickListener(data, event) {
-	console.log(data['name']);
-	// populateInfoWindow(data, infowindow)
-	// var infowindow = new google.maps.InfoWindow({});
+	// console.log(data['name']);
+	var infowindow = new google.maps.InfoWindow({});
+	var marker = new google.maps.Marker({
+		position: new google.maps.LatLng(data['coordinates']['lat'], data['coordinates']['lng']),
+		map: map,  //  TODO: Find way to pass in CORRECT parameter of "map" to this function...
+		title: data.name,
+		summaryID: data.wikiPageID
+	});
+	populateInfoWindow(marker, infowindow)
+
+
 }
 
 var ViewModel = function() {
