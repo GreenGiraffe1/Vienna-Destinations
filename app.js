@@ -49,13 +49,13 @@ var ViennaModel = {
 // var map;
 function initMap() {
 	// Constructor creates a new map - only center and zoom are required.
-	var map = new google.maps.Map(document.getElementById('map'), {
+	vm.map = new google.maps.Map(document.getElementById('map'), {
 		center: {lat: 48.205, lng: 16.366667},
 		zoom: 13,
 		mapTypeControl: false
 	});
-	// markerMaker(list, map)
-	return map;
+	//markerMaker(list, map);
+	vm.makeMarkers(map);
 }
 
 function markerMaker(list, map) {
@@ -92,16 +92,12 @@ function populateInfoWindow(marker, infowindow) {
 	});
 }
 
+// http://knockoutjs.com/documentation/click-binding.html#note-1-passing-a-current-item-as-a-parameter-to-your-handler-function
 function listviewClickListener(data, event) {
 	// console.log(data['name']);
+	console.log(data);
 	var infowindow = new google.maps.InfoWindow({});
-	var marker = new google.maps.Marker({
-		position: new google.maps.LatLng(data['coordinates']['lat'], data['coordinates']['lng']),
-		map: map,  //  TODO: Find way to pass in CORRECT parameter of "map" to this function...
-		title: data.name,
-		summaryID: data.wikiPageID
-	});
-	populateInfoWindow(marker, infowindow)
+	populateInfoWindow(data.marker, infowindow)
 
 
 }
@@ -113,14 +109,32 @@ var ViewModel = function() {
 		self.viennaList.push(ViennaModel.locations[i]);
 		// console.log(self.viennaList()[i]['name']);  //  This confirms that it works
 	}
-	self.mapObject = initMap();
-	// console.log(self.mapObject);
-	markerMaker(self.viennaList(), self.mapObject);
+	var text = 'you';
 
+	//initMap(self.viennaList());
 
+	self.makeMarkers = function() {
+		var markers = [];
+		var infoWindow = new google.maps.InfoWindow({});
 
+		for (var i = 0; i < self.viennaList().length; i++) {
+			self.viennaList()[i].marker = new google.maps.Marker({
+				position: new google.maps.LatLng(self.viennaList()[i]['coordinates']['lat'], self.viennaList()[i]['coordinates']['lng']),
+				map: vm.map,
+				title: self.viennaList()[i].name,
+				summaryID: self.viennaList()[i].wikiPageID,
+				id: i
+			});
+			//  Add each individual marker to the "markers" array
+			//markers.push(marker);
 
-}
+			//  Set the animation for clicking on any map marker   TODO: Use this syntax for list-view items
+			self.viennaList()[i].marker.addListener('click', function() {
+				populateInfoWindow(this, infoWindow);  //  Call's the info-window function - will populate with right information
+			});
+		}
+	};
+};
 
 var vm = new ViewModel();
 
