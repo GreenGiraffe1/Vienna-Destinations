@@ -84,26 +84,34 @@ function markerMaker(list, map) {
 	}
 }
 
+
 function populateInfoWindow(marker) {
+
 	var wikiPageURL = "https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&pageids=" + marker.summaryID + "&exintro=1";
+
+	//  Build a timeout function for error handling of the JSON-P request to wikipedia, help can be found here:
+	//  https://classroom.udacity.com/nanodegrees/nd004/parts/135b6edc-f1cd-4cd9-b831-1908ede75737/modules/271165859175460/lessons/3310298553/concepts/31621285920923
+	var wikiRequestTimeout = setTimeout(function() {
+		infoWindow1.setContent('<h3 id="location-title">' + marker.title + '</h3><div>(Failed to get Wikipedia Resources)</div>');
+		marker.setAnimation(google.maps.Animation.DROP);  //  Wow - all I had to do was change "marker" to "this"
+		infoWindow1.open(map, marker);
+	}, 2000);
+
 	$.ajax({ url : wikiPageURL, dataType : "jsonp",
 		success : function(response) {
 			var wikiSummary = response['query']['pages'][marker.summaryID]['extract'];
 			infoWindow1.setContent('<h3 id="location-title">' + marker.title + '</h3><div id="summary">' + wikiSummary + '</div>');
 			marker.setAnimation(google.maps.Animation.DROP);  //  Wow - all I had to do was change "marker" to "this"
 			infoWindow1.open(map, marker);
+			clearTimeout(wikiRequestTimeout);
 		}
+
 	});
 }
 
 // http://knockoutjs.com/documentation/click-binding.html#note-1-passing-a-current-item-as-a-parameter-to-your-handler-function
 function listviewClickListener(data, event) {
-	// console.log(data['name']);
-	console.log(data);
-	// var infowindow = new google.maps.InfoWindow({});
-	populateInfoWindow(data.marker)
-
-
+	populateInfoWindow(data.marker);
 }
 
 var ViewModel = function() {
