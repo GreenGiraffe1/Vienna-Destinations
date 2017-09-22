@@ -46,6 +46,8 @@ var ViennaModel = {
 	]
 };
 
+
+
 // var map;
 function initMap() {
 	// Constructor creates a new map - only center and zoom are required.
@@ -56,12 +58,14 @@ function initMap() {
 	});
 	//markerMaker(list, map);
 	vm.makeMarkers(map);
+	infoWindow1 = new google.maps.InfoWindow({});
+
 }
 
 function markerMaker(list, map) {
 	//Create a new blank array for all the listing markers.
 	var markers = [];
-	var infoWindow = new google.maps.InfoWindow({});
+	// var infoWindow = new google.maps.InfoWindow({});
 
 	for (var i = 0; i < list.length; i++) {
 		var marker = new google.maps.Marker({
@@ -75,19 +79,19 @@ function markerMaker(list, map) {
 		markers.push(marker);
 		//  Set the animation for clicking on any map marker   TODO: Use this syntax for list-view items
 		marker.addListener('click', function() {
-			populateInfoWindow(this, infoWindow);  //  Call's the info-window function - will populate with right information
+			populateInfoWindow(this);  //  Call's the info-window function - will populate with right information
 		});
 	}
 }
 
-function populateInfoWindow(marker, infowindow) {
+function populateInfoWindow(marker) {
 	var wikiPageURL = "https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&pageids=" + marker.summaryID + "&exintro=1";
 	$.ajax({ url : wikiPageURL, dataType : "jsonp",
 		success : function(response) {
 			var wikiSummary = response['query']['pages'][marker.summaryID]['extract'];
-			infowindow.setContent('<h3 id="location-title">' + marker.title + '</h3><div id="summary">' + wikiSummary + '</div>');
+			infoWindow1.setContent('<h3 id="location-title">' + marker.title + '</h3><div id="summary">' + wikiSummary + '</div>');
 			marker.setAnimation(google.maps.Animation.DROP);  //  Wow - all I had to do was change "marker" to "this"
-			infowindow.open(map, marker);
+			infoWindow1.open(map, marker);
 		}
 	});
 }
@@ -96,8 +100,8 @@ function populateInfoWindow(marker, infowindow) {
 function listviewClickListener(data, event) {
 	// console.log(data['name']);
 	console.log(data);
-	var infowindow = new google.maps.InfoWindow({});
-	populateInfoWindow(data.marker, infowindow)
+	// var infowindow = new google.maps.InfoWindow({});
+	populateInfoWindow(data.marker)
 
 
 }
@@ -115,7 +119,7 @@ var ViewModel = function() {
 
 	self.makeMarkers = function() {
 		var markers = [];
-		var infoWindow = new google.maps.InfoWindow({});
+		// var infoWindow = new google.maps.InfoWindow({});
 
 		for (var i = 0; i < self.viennaList().length; i++) {
 			self.viennaList()[i].marker = new google.maps.Marker({
@@ -130,7 +134,7 @@ var ViewModel = function() {
 
 			//  Set the animation for clicking on any map marker   TODO: Use this syntax for list-view items
 			self.viennaList()[i].marker.addListener('click', function() {
-				populateInfoWindow(this, infoWindow);  //  Call's the info-window function - will populate with right information
+				populateInfoWindow(this);  //  Call's the info-window function - will populate with right information
 			});
 		}
 	};
