@@ -62,6 +62,18 @@ function initMap() {
 
 }
 
+function googleError() {
+	//  This function is invoked if the Google Maps API isn't reachable
+	// var div = document.createElement("div");
+	// div.innerHTML = "<h1>Google Error</h1>";
+	// document.getElementsByTagName('body')[0].appendChild(div);
+	// document.getElementById('map')[0].appendChild(div);
+
+	var errorMsg = '<div>Error - Google Maps cannot be reached</div>';
+	$('#map').append(errorMsg);
+
+}
+
 function markerMaker(list, map) {
 	//Create a new blank array for all the listing markers.
 	var markers = [];
