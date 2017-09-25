@@ -132,6 +132,26 @@ var ViewModel = function() {
 	};
 };
 
+
+
+
+
+
+//  Event Listener goes here, and will call the listview Filter function
+
+
+//  List-view filter function
+function listviewFilterFunc(originalArray, userInput) {
+	var filteredList = [];
+
+}
+
+
+
+
+
+
+
 var vm = new ViewModel();
 
 ko.applyBindings(vm);
