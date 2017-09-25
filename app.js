@@ -20,7 +20,7 @@ var ViennaModel = {
 			officialWikiTitle: null
 		},
 		{
-			name: 'Schönbrunn Palace',
+			name: 'Schonbrunn Palace',
 			coordinates: {lat: 48.184516, lng: 16.311865},
 			wikiPageID: 165202,
 			officialWikiTitle: null
@@ -151,18 +151,22 @@ $('#Inputer').on('change paste keyup', function() {
 //  List-view filter function
 function listviewFilterFunc(originalArray, userInput) {
 	var filteredList = [];
-	console.log(originalArray);
+	// console.log(originalArray);
 	for (var i = 0; i < originalArray.length; i++) {
 		var comparisonString = originalArray[i].name;
-		var msCleo = comparisonString.indexOf(userInput);
+
+		//  TODO:  Fix IndexOf()  -  It's not working as expected.
+		// var msCleo = comparisonString.indexOf(userInput);
+		var msCleo = comparisonString.search(new RegExp(userInput, 'i'));
 
 		if (msCleo > -1) {
-			console.log(comparisonString);
+			// console.log(comparisonString);
+			filteredList.push(originalArray[i]);
 		}
-
 
 		// console.log(msCleo);
 	}
+	console.log(filteredList);
 
 
 	//  Need to compare the names of locations vs. the user input, and IF
