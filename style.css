@@ -30,6 +30,14 @@ body {
   transform: translate(-340px, 0);
 }
 
+.hamIcon {
+	position: fixed;
+	z-index: 10;
+	top: 0px;
+	left: 12px;
+	width: 50px;
+}
+
 /*.container {
   height: 100%;
   position: relative;
@@ -62,5 +70,9 @@ body {
 	#map {
 		width: auto;
 		flex-grow: 1;
+	}
+
+	.hamIcon {
+		display: none;
 	}
 }

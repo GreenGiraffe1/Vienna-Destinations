@@ -46,6 +46,12 @@ var ViennaModel = {
 	]
 };
 
+
+var overlay;
+hamburgerOverlay.prototype = new google.maps.OverlayView();
+
+
+
 function initMap() {
 	// Constructor creates a new map - only center and zoom are required.
 	vm.map = new google.maps.Map(document.getElementById('map'), {
@@ -55,7 +61,16 @@ function initMap() {
 	});
 	vm.makeMarkers(map);
 	infoWindow1 = new google.maps.InfoWindow({});
+
+	var srcImage = 'hamburgerIcon.svg';
+
+	overlay = new hamburgerOverlay(bounds, srcImage, vm.map);
+
 }
+
+function hamburgerOverlay(
+
+)
 
 function googleError() {
 	//  This function is invoked if the Google Maps API isn't reachable
