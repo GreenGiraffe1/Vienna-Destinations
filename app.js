@@ -138,7 +138,9 @@ var ViewModel = function() {
 
 
 //  Event Listener goes here, and will call the listview Filter function
-
+$('#Inputer').on('change paste keyup', function() {
+		alert($(this).val());
+});
 
 //  List-view filter function
 function listviewFilterFunc(originalArray, userInput) {
