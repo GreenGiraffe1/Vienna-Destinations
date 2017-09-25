@@ -139,12 +139,36 @@ var ViewModel = function() {
 
 //  Event Listener goes here, and will call the listview Filter function
 $('#Inputer').on('change paste keyup', function() {
-		alert($(this).val());
+		// alert($(this).val());
+		// console.log($(this).val());
+		var textboxContent = $(this).val();
+		// console.log(textboxContent);
+		listviewFilterFunc(vm.viennaList(), textboxContent);
+		// console.log(vm.viennaList());
+
 });
 
 //  List-view filter function
 function listviewFilterFunc(originalArray, userInput) {
 	var filteredList = [];
+	console.log(originalArray);
+	for (var i = 0; i < originalArray.length; i++) {
+		var comparisonString = originalArray[i].name;
+		var msCleo = comparisonString.indexOf(userInput);
+
+		if (msCleo > -1) {
+			console.log(comparisonString);
+		}
+
+
+		// console.log(msCleo);
+	}
+
+
+	//  Need to compare the names of locations vs. the user input, and IF
+	//  the indexOf() function returns a positive result, I need to put that
+	//  object into the GOOD array - and that will get send to the next stage
+
 
 }
 
