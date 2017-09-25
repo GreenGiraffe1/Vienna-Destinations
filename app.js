@@ -46,9 +46,6 @@ var ViennaModel = {
 	]
 };
 
-
-
-// var map;
 function initMap() {
 	// Constructor creates a new map - only center and zoom are required.
 	vm.map = new google.maps.Map(document.getElementById('map'), {
@@ -64,21 +61,13 @@ function initMap() {
 
 function googleError() {
 	//  This function is invoked if the Google Maps API isn't reachable
-	// var div = document.createElement("div");
-	// div.innerHTML = "<h1>Google Error</h1>";
-	// document.getElementsByTagName('body')[0].appendChild(div);
-	// document.getElementById('map')[0].appendChild(div);
-
 	var errorMsg = '<div>Error - Google Maps cannot be reached</div>';
 	$('#map').append(errorMsg);
-
 }
 
 function markerMaker(list, map) {
 	//Create a new blank array for all the listing markers.
 	var markers = [];
-	// var infoWindow = new google.maps.InfoWindow({});
-
 	for (var i = 0; i < list.length; i++) {
 		var marker = new google.maps.Marker({
 			position: new google.maps.LatLng(list[i]['coordinates']['lat'], list[i]['coordinates']['lng']),
@@ -89,7 +78,6 @@ function markerMaker(list, map) {
 		});
 		//  Add each individual marker to the "markers" array
 		markers.push(marker);
-		//  Set the animation for clicking on any map marker   TODO: Use this syntax for list-view items
 		marker.addListener('click', function() {
 			populateInfoWindow(this);  //  Call's the info-window function - will populate with right information
 		});
@@ -149,10 +137,6 @@ var ViewModel = function() {
 				summaryID: self.viennaList()[i].wikiPageID,
 				id: i
 			});
-			//  Add each individual marker to the "markers" array
-			//markers.push(marker);
-
-			//  Set the animation for clicking on any map marker   TODO: Use this syntax for list-view items
 			self.viennaList()[i].marker.addListener('click', function() {
 				populateInfoWindow(this);  //  Call's the info-window function - will populate with right information
 			});

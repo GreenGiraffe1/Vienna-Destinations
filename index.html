@@ -7,23 +7,21 @@
 		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
-		<div class="container">
-	      	<div class="options-box">
-	        	<h1>Vienna Vacation Destinations</h1>
-	        	<div>
-	          		<input id="show-listings" type="button" value="Show Listings">
-	          		<input id="hide-listings" type="button" value="Hide Listings">
-	           		<input type="checkbox" name="toggleMarkers" value="yes" checked>Show Markers?<br>
-	           		<hr>
-	           		<div class="list-class">
-						<h3>Locations List:</h3>
-						<ul data-bind="foreach: viennaList">
-							<li data-bind="text: name, click: listviewClickListener"></li>
-						</ul>
-	               	</div>
-	           	</div>
-	        </div>
-	    </div>
+      	<div id="options-box" class="left-pane">
+        	<h1>Vienna Vacation Destinations</h1>
+        	<div>
+          		<!-- <input id="show-listings" type="button" value="Show Listings">
+          		<input id="hide-listings" type="button" value="Hide Listings"> -->
+           		<input type="checkbox" name="toggleMarkers" value="yes" checked>Show Markers?<br>
+           		<hr>
+           		<div class="list-class">
+					<h3>Locations List:</h3>
+					<ul data-bind="foreach: viennaList">
+						<li data-bind="text: name, click: listviewClickListener"></li>
+					</ul>
+               	</div>
+           	</div>
+        </div>
 	    <div id="map"></div>
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.1/knockout-min.js"></script>

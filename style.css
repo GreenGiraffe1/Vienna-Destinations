@@ -2,28 +2,34 @@ html,
 body {
   font-family: Arial, sans-serif;
   height: 100%;
-  margin: 0;
-  padding: 0;
+  /*margin: 0;
+  padding: 0;*/
+  width: 100%;
 }
 
 /*#map {
   height: 100%;
 }*/
 
-#hide-listings,#show-listings {
+/*#hide-listings,#show-listings {
   width: 48%;
-}
+}*/
 
 /*#pano {
   width: 200px;
   height: 200px;
 }*/
 
+#options-box,#map {
+	padding: 1em;
+	box-sizing: border-box;
+}
+
 .item {
 	margin-left: 20px;
 }
 
-.options-box {
+#options-box {
   background: #fff;
   border: 1px solid #999;
   border-radius: 3px;
@@ -32,17 +38,42 @@ body {
   padding: 10px 10px 30px 10px;
   text-align: left;
   width: 340px;
+  position: absolute;
+  -webkit-transform: translate(-340px, 0);
+  transform: translate(-340px, 0);
 }
 
-.container {
+/*.container {
   height: 100%;
   position: relative;
-}
+}*/
 
 #map {
-  bottom:0px;
+  /*bottom:0px;*/
   height: 100%;
-  left: 362px;
-  position: absolute;
-  right: 0px;
+  /*left: 362px;*/
+  /*position: absolute;*/
+  /*right: 0px;*/
+  width: 100%;
+  /*flex-grow: 1;*/
+}
+
+@media (min-width: 600px) {
+	#options-box {
+		position: relative;
+		-webkit-transform: translate(0, 0);
+		transform: translate(0, 0);
+	}
+
+	body {
+		display: -webkit-flex;
+		display: flex;
+		-webkit-flex-flow: row nowrap;
+		flex-flow: row nowrap;
+	}
+
+	#map {
+		width: auto;
+		flex-grow: 1;
+	}
 }
