@@ -174,6 +174,13 @@ function listviewFilterFunc(originalArray, userInput) {
 	//  object into the GOOD array - and that will get send to the next stage
 
 
+	//  Next stage to send the array to is......
+	//      * markers
+	//      * listview locations - PS  -  KnockOut Observable Array !!
+
+	//    PPS - only filter the list    IF    there is an input
+
+
 }
 
 
