@@ -53,10 +53,8 @@ function initMap() {
 		zoom: 13,
 		mapTypeControl: false
 	});
-	//markerMaker(list, map);
 	vm.makeMarkers(map);
 	infoWindow1 = new google.maps.InfoWindow({});
-
 }
 
 function googleError() {
@@ -66,7 +64,6 @@ function googleError() {
 }
 
 function markerMaker(list, map) {
-	//Create a new blank array for all the listing markers.
 	var markers = [];
 	for (var i = 0; i < list.length; i++) {
 		var marker = new google.maps.Marker({
@@ -76,14 +73,12 @@ function markerMaker(list, map) {
 			summaryID: list[i].wikiPageID,
 			id: i
 		});
-		//  Add each individual marker to the "markers" array
 		markers.push(marker);
 		marker.addListener('click', function() {
-			populateInfoWindow(this);  //  Call's the info-window function - will populate with right information
+			populateInfoWindow(this);
 		});
 	}
 }
-
 
 function populateInfoWindow(marker) {
 
@@ -101,11 +96,10 @@ function populateInfoWindow(marker) {
 		success : function(response) {
 			var wikiSummary = response['query']['pages'][marker.summaryID]['extract'];
 			infoWindow1.setContent('<h3 id="location-title">' + marker.title + '</h3><div id="summary">' + wikiSummary + '</div>');
-			marker.setAnimation(google.maps.Animation.DROP);  //  Wow - all I had to do was change "marker" to "this"
+			marker.setAnimation(google.maps.Animation.DROP);
 			infoWindow1.open(map, marker);
 			clearTimeout(wikiRequestTimeout);
 		}
-
 	});
 }
 
@@ -119,16 +113,10 @@ var ViewModel = function() {
 	self.viennaList = ko.observableArray();
 	for (var i = 0; i < ViennaModel.locations.length; i++) {
 		self.viennaList.push(ViennaModel.locations[i]);
-		// console.log(self.viennaList()[i]['name']);  //  This confirms that it works
 	}
-	var text = 'you';
-
-	//initMap(self.viennaList());
 
 	self.makeMarkers = function() {
 		var markers = [];
-		// var infoWindow = new google.maps.InfoWindow({});
-
 		for (var i = 0; i < self.viennaList().length; i++) {
 			self.viennaList()[i].marker = new google.maps.Marker({
 				position: new google.maps.LatLng(self.viennaList()[i]['coordinates']['lat'], self.viennaList()[i]['coordinates']['lng']),
@@ -138,7 +126,7 @@ var ViewModel = function() {
 				id: i
 			});
 			self.viennaList()[i].marker.addListener('click', function() {
-				populateInfoWindow(this);  //  Call's the info-window function - will populate with right information
+				populateInfoWindow(this);
 			});
 		}
 	};

@@ -7,19 +7,6 @@ body {
   width: 100%;
 }
 
-/*#map {
-  height: 100%;
-}*/
-
-/*#hide-listings,#show-listings {
-  width: 48%;
-}*/
-
-/*#pano {
-  width: 200px;
-  height: 200px;
-}*/
-
 #options-box,#map {
 	padding: 1em;
 	box-sizing: border-box;
@@ -49,13 +36,13 @@ body {
 }*/
 
 #map {
-  /*bottom:0px;*/
   height: 100%;
-  /*left: 362px;*/
-  /*position: absolute;*/
-  /*right: 0px;*/
   width: 100%;
-  /*flex-grow: 1;*/
+}
+
+#options-box.open {
+	-webkit-transform: translate(0, 0);
+	transform: translate(0, 0);
 }
 
 @media (min-width: 600px) {
