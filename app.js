@@ -113,9 +113,17 @@ function listviewClickListener(data, event) {
 var ViewModel = function() {
 	var self = this;
 	self.viennaList = ko.observableArray();
+
+	self.filteredList = ko.observableArray();
+
 	for (var i = 0; i < ViennaModel.locations.length; i++) {  //  This is the ORIGIN of all information flow
 		self.viennaList.push(ViennaModel.locations[i]);
 	}
+
+	self.userTextBoxInput = ko.observable($('#Inputer').val());
+
+
+
 
 	self.makeMarkers = function() {
 		var markers = [];
@@ -132,6 +140,32 @@ var ViewModel = function() {
 			});
 		}
 	};
+	//  List-view filter function
+	self.listviewFilterFunc = function(originalArray, userInput) {
+		// var filteredList = [];
+		// console.log(originalArray);
+		console.log(self.filteredList());
+		self.filteredList([]);  //  Cleat the filteredList() obs array every time the filtering function is called
+		console.log(self.filteredList());
+		for (var i = 0; i < originalArray.length; i++) {
+			var comparisonString = originalArray[i].name;
+
+			//  TODO:  Fix IndexOf()  -  It's not working as expected.
+			// var msCleo = comparisonString.indexOf(userInput);
+			var msCleo = comparisonString.search(new RegExp(userInput, 'i'));
+
+			if (msCleo > -1) {
+				// console.log(comparisonString);
+				self.filteredList().push(originalArray[i]);
+			}
+
+			// console.log(msCleo);
+		}
+		console.log(self.filteredList());
+	};
+
+	self.listviewFilterFunc(self.viennaList(), self.userTextBoxInput());
+	console.log(self.filteredList());
 };
 
 
@@ -145,45 +179,32 @@ $('#Inputer').on('change paste keyup', function() {
 		// console.log($(this).val());
 		var textboxContent = $(this).val();
 		// console.log(textboxContent);
-		listviewFilterFunc(vm.viennaList(), textboxContent);
+		vm.listviewFilterFunc(vm.viennaList(), textboxContent);
 		// console.log(vm.viennaList());
 
 });
 
-//  List-view filter function
-function listviewFilterFunc(originalArray, userInput) {
-	var filteredList = [];
-	// console.log(originalArray);
-	for (var i = 0; i < originalArray.length; i++) {
-		var comparisonString = originalArray[i].name;
-
-		//  TODO:  Fix IndexOf()  -  It's not working as expected.
-		// var msCleo = comparisonString.indexOf(userInput);
-		var msCleo = comparisonString.search(new RegExp(userInput, 'i'));
-
-		if (msCleo > -1) {
-			// console.log(comparisonString);
-			filteredList.push(originalArray[i]);
-		}
-
-		// console.log(msCleo);
-	}
-	console.log(filteredList);
-
-
-	//  Need to compare the names of locations vs. the user input, and IF
-	//  the indexOf() function returns a positive result, I need to put that
-	//  object into the GOOD array - and that will get send to the next stage
-
-
-	//  Next stage to send the array to is......
-	//      * markers
-	//      * listview locations - PS  -  KnockOut Observable Array !!
-
-	//    PPS - only filter the list    IF    there is an input
-
-
-}
+// //  List-view filter function
+// function listviewFilterFunc(originalArray, userInput) {
+// 	// var filteredList = [];
+// 	// console.log(originalArray);
+// 	vm.filteredList([]);  //  Cleat the filteredList() obs array every time the filtering function is called
+// 	for (var i = 0; i < originalArray.length; i++) {
+// 		var comparisonString = originalArray[i].name;
+//
+// 		//  TODO:  Fix IndexOf()  -  It's not working as expected.
+// 		// var msCleo = comparisonString.indexOf(userInput);
+// 		var msCleo = comparisonString.search(new RegExp(userInput, 'i'));
+//
+// 		if (msCleo > -1) {
+// 			// console.log(comparisonString);
+// 			vm.filteredList().push(originalArray[i]);
+// 		}
+//
+// 		// console.log(msCleo);
+// 	}
+// 	console.log(vm.filteredList());
+// }
 
 
 
