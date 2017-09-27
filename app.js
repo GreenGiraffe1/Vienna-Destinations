@@ -53,7 +53,9 @@ function initMap() {
 		zoom: 13,
 		mapTypeControl: false
 	});
-	vm.makeMarkers(map);
+	// vm.makeMarkers(map);
+	vm.makeMarkers();
+
 	infoWindow1 = new google.maps.InfoWindow({});
 }
 
@@ -63,22 +65,22 @@ function googleError() {
 	$('#map').append(errorMsg);
 }
 
-function markerMaker(list, map) {
-	var markers = [];
-	for (var i = 0; i < list.length; i++) {
-		var marker = new google.maps.Marker({
-			position: new google.maps.LatLng(list[i]['coordinates']['lat'], list[i]['coordinates']['lng']),
-			map: map,
-			title: list[i].name,
-			summaryID: list[i].wikiPageID,
-			id: i
-		});
-		markers.push(marker);
-		marker.addListener('click', function() {
-			populateInfoWindow(this);
-		});
-	}
-}
+// function markerMaker(list, map) {
+// 	var markers = [];
+// 	for (var i = 0; i < list.length; i++) {
+// 		var marker = new google.maps.Marker({
+// 			position: new google.maps.LatLng(list[i]['coordinates']['lat'], list[i]['coordinates']['lng']),
+// 			map: map,
+// 			title: list[i].name,
+// 			summaryID: list[i].wikiPageID,
+// 			id: i
+// 		});
+// 		markers.push(marker);
+// 		marker.addListener('click', function() {
+// 			populateInfoWindow(this);
+// 		});
+// 	}
+// }
 
 function populateInfoWindow(marker) {
 
@@ -111,7 +113,7 @@ function listviewClickListener(data, event) {
 var ViewModel = function() {
 	var self = this;
 	self.viennaList = ko.observableArray();
-	for (var i = 0; i < ViennaModel.locations.length; i++) {
+	for (var i = 0; i < ViennaModel.locations.length; i++) {  //  This is the ORIGIN of all information flow
 		self.viennaList.push(ViennaModel.locations[i]);
 	}
 
