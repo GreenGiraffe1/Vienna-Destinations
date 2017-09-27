@@ -54,7 +54,8 @@ function initMap() {
 		mapTypeControl: false
 	});
 	// vm.makeMarkers(map);
-	vm.makeMarkers();
+	// vm.listviewFilterFunc(vm.viennaList(), vm.userTextBoxInput());
+	// vm.makeMarkers();
 
 	infoWindow1 = new google.maps.InfoWindow({});
 }
@@ -115,7 +116,7 @@ var ViewModel = function() {
 	self.viennaList = ko.observableArray();
 
 	self.filteredList = ko.observableArray();
-
+	console.log(self.filteredList());
 	for (var i = 0; i < ViennaModel.locations.length; i++) {  //  This is the ORIGIN of all information flow
 		self.viennaList.push(ViennaModel.locations[i]);
 	}
@@ -127,15 +128,15 @@ var ViewModel = function() {
 
 	self.makeMarkers = function() {
 		var markers = [];
-		for (var i = 0; i < self.viennaList().length; i++) {
-			self.viennaList()[i].marker = new google.maps.Marker({
-				position: new google.maps.LatLng(self.viennaList()[i]['coordinates']['lat'], self.viennaList()[i]['coordinates']['lng']),
+		for (var i = 0; i < self.filteredList().length; i++) {
+			self.filteredList()[i].marker = new google.maps.Marker({
+				position: new google.maps.LatLng(self.filteredList()[i]['coordinates']['lat'], self.filteredList()[i]['coordinates']['lng']),
 				map: vm.map,
-				title: self.viennaList()[i].name,
-				summaryID: self.viennaList()[i].wikiPageID,
+				title: self.filteredList()[i].name,
+				summaryID: self.filteredList()[i].wikiPageID,
 				id: i
 			});
-			self.viennaList()[i].marker.addListener('click', function() {
+			self.filteredList()[i].marker.addListener('click', function() {
 				populateInfoWindow(this);
 			});
 		}
@@ -166,6 +167,7 @@ var ViewModel = function() {
 
 	self.listviewFilterFunc(self.viennaList(), self.userTextBoxInput());
 	console.log(self.filteredList());
+	self.makeMarkers();
 };
 
 
