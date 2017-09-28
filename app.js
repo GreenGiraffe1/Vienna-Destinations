@@ -114,13 +114,27 @@ var ViewModel = function() {
 	var self = this;
 	self.viennaList = ko.observableArray();
 
-	self.filteredList = ko.observableArray();
+	// self.filteredList = ko.observableArray();
 
 	for (var i = 0; i < ViennaModel.locations.length; i++) {  //  This is the ORIGIN of all information flow
 		self.viennaList.push(ViennaModel.locations[i]);
 	}
 
 	self.userText = ko.observable('');
+	self.newFilteredList = ko.computed(function() {
+
+		if (!self.userText()) {
+			// Return the original array if there is no user input
+			return self.viennaList();
+		} else {
+			//  Filtering mechanism, returns the filtered array here
+			return ko.utils.arrayFilter(self.viennaList(), function(item) {
+				//  Returns true if the user input string is found in the name
+				//  of the current item being passed, (case insensitive)
+				return (item.name.search(new RegExp(self.userText(), 'i')) > -1);
+			});
+		}
+	});
 
 
 
@@ -165,7 +179,7 @@ var ViewModel = function() {
 	// };
 
 	// self.listviewFilterFunc(self.viennaList(), self.userTextBoxInput());
-	console.log(self.filteredList());
+	// console.log(self.filteredList());
 };
 
 
