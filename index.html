@@ -14,12 +14,16 @@
 			</div>
 			<div>
 				<label for="Inputer">Enter Text to Filter List:</label>
-				<input id="Inputer" type="text" name="textInput" value="">
+				<!-- <input id="Inputer" type="text" name="textInput" value=""> -->
+				<input id="Inputer" type="text" data-bind="textInput: userText" value="">
+				<div data-bind="text: userText">
+
+				</div>
 			</div>
        		<hr>
        		<div class="list-class">
 				<h3>Locations List:</h3>
-				<ul data-bind="foreach: filteredList">
+				<ul data-bind="foreach: viennaList">
 					<li data-bind="text: name, click: listviewClickListener"></li>
 				</ul>
            	</div>

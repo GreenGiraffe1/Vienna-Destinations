@@ -120,7 +120,7 @@ var ViewModel = function() {
 		self.viennaList.push(ViennaModel.locations[i]);
 	}
 
-	self.userTextBoxInput = ko.observable($('#Inputer').val());
+	self.userText = ko.observable('');
 
 
 
@@ -141,30 +141,30 @@ var ViewModel = function() {
 		}
 	};
 	//  List-view filter function
-	self.listviewFilterFunc = function(originalArray, userInput) {
-		// var filteredList = [];
-		// console.log(originalArray);
-		console.log(self.filteredList());
-		self.filteredList([]);  //  Cleat the filteredList() obs array every time the filtering function is called
-		console.log(self.filteredList());
-		for (var i = 0; i < originalArray.length; i++) {
-			var comparisonString = originalArray[i].name;
+	// self.listviewFilterFunc = function(originalArray, userInput) {
+	// 	// var filteredList = [];
+	// 	// console.log(originalArray);
+	// 	console.log(self.filteredList());
+	// 	self.filteredList([]);  //  Cleat the filteredList() obs array every time the filtering function is called
+	// 	console.log(self.filteredList());
+	// 	for (var i = 0; i < originalArray.length; i++) {
+	// 		var comparisonString = originalArray[i].name;
+	//
+	// 		//  TODO:  Fix IndexOf()  -  It's not working as expected.
+	// 		// var msCleo = comparisonString.indexOf(userInput);
+	// 		var msCleo = comparisonString.search(new RegExp(userInput, 'i'));
+	//
+	// 		if (msCleo > -1) {
+	// 			// console.log(comparisonString);
+	// 			self.filteredList().push(originalArray[i]);
+	// 		}
+	//
+	// 		// console.log(msCleo);
+	// 	}
+	// 	console.log(self.filteredList());
+	// };
 
-			//  TODO:  Fix IndexOf()  -  It's not working as expected.
-			// var msCleo = comparisonString.indexOf(userInput);
-			var msCleo = comparisonString.search(new RegExp(userInput, 'i'));
-
-			if (msCleo > -1) {
-				// console.log(comparisonString);
-				self.filteredList().push(originalArray[i]);
-			}
-
-			// console.log(msCleo);
-		}
-		console.log(self.filteredList());
-	};
-
-	self.listviewFilterFunc(self.viennaList(), self.userTextBoxInput());
+	// self.listviewFilterFunc(self.viennaList(), self.userTextBoxInput());
 	console.log(self.filteredList());
 };
 
@@ -174,15 +174,15 @@ var ViewModel = function() {
 
 
 //  Event Listener goes here, and will call the listview Filter function
-$('#Inputer').on('change paste keyup', function() {
-		// alert($(this).val());
-		// console.log($(this).val());
-		var textboxContent = $(this).val();
-		// console.log(textboxContent);
-		vm.listviewFilterFunc(vm.viennaList(), textboxContent);
-		// console.log(vm.viennaList());
-
-});
+// $('#Inputer').on('change paste keyup', function() {
+// 		// alert($(this).val());
+// 		// console.log($(this).val());
+// 		var textboxContent = $(this).val();
+// 		// console.log(textboxContent);
+// 		vm.listviewFilterFunc(vm.viennaList(), textboxContent);
+// 		// console.log(vm.viennaList());
+//
+// });
 
 // //  List-view filter function
 // function listviewFilterFunc(originalArray, userInput) {
