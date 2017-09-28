@@ -46,6 +46,7 @@ var ViennaModel = {
 	]
 };
 
+
 function initMap() {
 	// Constructor creates a new map - only center and zoom are required.
 	vm.map = new google.maps.Map(document.getElementById('map'), {
@@ -55,9 +56,9 @@ function initMap() {
 	});
 	// vm.makeMarkers(map);
 	vm.makeMarkers();
-
 	infoWindow1 = new google.maps.InfoWindow({});
 }
+
 
 function googleError() {
 	//  This function is invoked if the Google Maps API isn't reachable
@@ -65,25 +66,9 @@ function googleError() {
 	$('#map').append(errorMsg);
 }
 
-// function markerMaker(list, map) {
-// 	var markers = [];
-// 	for (var i = 0; i < list.length; i++) {
-// 		var marker = new google.maps.Marker({
-// 			position: new google.maps.LatLng(list[i]['coordinates']['lat'], list[i]['coordinates']['lng']),
-// 			map: map,
-// 			title: list[i].name,
-// 			summaryID: list[i].wikiPageID,
-// 			id: i
-// 		});
-// 		markers.push(marker);
-// 		marker.addListener('click', function() {
-// 			populateInfoWindow(this);
-// 		});
-// 	}
-// }
 
 function populateInfoWindow(marker) {
-
+	
 	var wikiPageURL = "https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&pageids=" + marker.summaryID + "&exintro=1";
 
 	//  Build a timeout function for error handling of the JSON-P request to wikipedia, help can be found here:
@@ -105,24 +90,23 @@ function populateInfoWindow(marker) {
 	});
 }
 
+
 // http://knockoutjs.com/documentation/click-binding.html#note-1-passing-a-current-item-as-a-parameter-to-your-handler-function
 function listviewClickListener(data, event) {
 	populateInfoWindow(data.marker);
 }
 
+
 var ViewModel = function() {
+
 	var self = this;
 	self.viennaList = ko.observableArray();
-
-	// self.filteredList = ko.observableArray();
-
 	for (var i = 0; i < ViennaModel.locations.length; i++) {  //  This is the ORIGIN of all information flow
 		self.viennaList.push(ViennaModel.locations[i]);
 	}
 
 	self.userText = ko.observable('');
 	self.newFilteredList = ko.computed(function() {
-
 		if (!self.userText()) {
 			// Return the original array if there is no user input
 			return self.viennaList();
@@ -135,9 +119,6 @@ var ViewModel = function() {
 			});
 		}
 	});
-
-
-
 
 	self.makeMarkers = function() {
 		var markers = [];
@@ -154,75 +135,7 @@ var ViewModel = function() {
 			});
 		}
 	};
-	//  List-view filter function
-	// self.listviewFilterFunc = function(originalArray, userInput) {
-	// 	// var filteredList = [];
-	// 	// console.log(originalArray);
-	// 	console.log(self.filteredList());
-	// 	self.filteredList([]);  //  Cleat the filteredList() obs array every time the filtering function is called
-	// 	console.log(self.filteredList());
-	// 	for (var i = 0; i < originalArray.length; i++) {
-	// 		var comparisonString = originalArray[i].name;
-	//
-	// 		//  TODO:  Fix IndexOf()  -  It's not working as expected.
-	// 		// var msCleo = comparisonString.indexOf(userInput);
-	// 		var msCleo = comparisonString.search(new RegExp(userInput, 'i'));
-	//
-	// 		if (msCleo > -1) {
-	// 			// console.log(comparisonString);
-	// 			self.filteredList().push(originalArray[i]);
-	// 		}
-	//
-	// 		// console.log(msCleo);
-	// 	}
-	// 	console.log(self.filteredList());
-	// };
-
-	// self.listviewFilterFunc(self.viennaList(), self.userTextBoxInput());
-	// console.log(self.filteredList());
 };
-
-
-
-
-
-
-//  Event Listener goes here, and will call the listview Filter function
-// $('#Inputer').on('change paste keyup', function() {
-// 		// alert($(this).val());
-// 		// console.log($(this).val());
-// 		var textboxContent = $(this).val();
-// 		// console.log(textboxContent);
-// 		vm.listviewFilterFunc(vm.viennaList(), textboxContent);
-// 		// console.log(vm.viennaList());
-//
-// });
-
-// //  List-view filter function
-// function listviewFilterFunc(originalArray, userInput) {
-// 	// var filteredList = [];
-// 	// console.log(originalArray);
-// 	vm.filteredList([]);  //  Cleat the filteredList() obs array every time the filtering function is called
-// 	for (var i = 0; i < originalArray.length; i++) {
-// 		var comparisonString = originalArray[i].name;
-//
-// 		//  TODO:  Fix IndexOf()  -  It's not working as expected.
-// 		// var msCleo = comparisonString.indexOf(userInput);
-// 		var msCleo = comparisonString.search(new RegExp(userInput, 'i'));
-//
-// 		if (msCleo > -1) {
-// 			// console.log(comparisonString);
-// 			vm.filteredList().push(originalArray[i]);
-// 		}
-//
-// 		// console.log(msCleo);
-// 	}
-// 	console.log(vm.filteredList());
-// }
-
-
-
-
 
 
 
