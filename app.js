@@ -59,9 +59,10 @@ function initMap() {
 	infoWindow1 = new google.maps.InfoWindow({});
 }
 
-
+/**
+* @description Displays an error message if the Goolge Maps API is unreachable
+*/
 function googleError() {
-	//  This function is invoked if the Google Maps API isn't reachable
 	var errorMsg = '<div>Error - Google Maps cannot be reached</div>';
 	$('#map').append(errorMsg);
 }
@@ -69,20 +70,25 @@ function googleError() {
 
 function populateInfoWindow(marker) {
 
-	var wikiPageURL = "https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&pageids=" + marker.summaryID + "&exintro=1";
+	var wikiPageURL = 'https://en.wikipedia.org/w/api.php?action=query&' +
+        'format=json&prop=extracts&pageids=' + marker.summaryID +
+        '&exintro=1';
 
 	//  Build a timeout function for error handling of the JSON-P request to wikipedia, help can be found here:
 	//  https://classroom.udacity.com/nanodegrees/nd004/parts/135b6edc-f1cd-4cd9-b831-1908ede75737/modules/271165859175460/lessons/3310298553/concepts/31621285920923
 	var wikiRequestTimeout = setTimeout(function() {
-		infoWindow1.setContent('<h3 id="location-title">' + marker.title + '</h3><div>(Failed to get Wikipedia Resources)</div>');
-		marker.setAnimation(google.maps.Animation.DROP);  //  Wow - all I had to do was change "marker" to "this"
+		infoWindow1.setContent('<h3 id="location-title">' + marker.title +
+            '</h3><div>(Failed to get Wikipedia Resources)</div>');
+		marker.setAnimation(google.maps.Animation.DROP);
 		infoWindow1.open(map, marker);
 	}, 2000);
 
-	$.ajax({ url : wikiPageURL, dataType : "jsonp",
+	$.ajax({ url : wikiPageURL, dataType : 'jsonp',
 		success : function(response) {
-			var wikiSummary = response['query']['pages'][marker.summaryID]['extract'];
-			infoWindow1.setContent('<h3 id="location-title">' + marker.title + '</h3><div id="summary">' + wikiSummary + '</div>');
+			var wikiSummary = response['query']['pages'][marker.summaryID]
+                ['extract'];
+			infoWindow1.setContent('<h3 id="location-title">' + marker.title +
+                '</h3><div id="summary">' + wikiSummary + '</div>');
 			marker.setAnimation(google.maps.Animation.DROP);
 			infoWindow1.open(map, marker);
 			clearTimeout(wikiRequestTimeout);
@@ -97,13 +103,14 @@ function listviewClickListener(data, event) {
 }
 
 
-$("#Inputer").on("change paste keyup", function() {  //  Conditionally display markers on the map.
+$('#Inputer').on('change paste keyup', function() {  //  Conditionally display markers on the map.
 	for (var k = 0; k < vm.viennaList().length; k++ ) {  //  Make all markers invisible
 		vm.viennaList()[k].marker.setMap(null);
 	}
    	for (var i = 0; i < vm.newFilteredList().length; i++) {
 		for (var j = 0; j < vm.viennaList().length; j++ ) {
-			if (vm.viennaList()[j].marker.summaryID === vm.newFilteredList()[i].wikiPageID) {
+			if (vm.viennaList()[j].marker.summaryID
+                    === vm.newFilteredList()[i].wikiPageID) {
 				vm.viennaList()[j].marker.setMap(vm.map);  //  Make marker visibile if it is visible in the List-View
 			}
 		}
@@ -128,7 +135,8 @@ var ViewModel = function() {
 			return ko.utils.arrayFilter(self.viennaList(), function(item) {
 				//  Returns true if the user input string is found in the name
 				//  of the current item being passed, (case insensitive)
-				return (item.name.search(new RegExp(self.userText(), 'i')) > -1);
+				return (item.name.search(new RegExp(self.userText(),
+                    'i')) > -1);
 			});
 		}
 	});
@@ -137,7 +145,9 @@ var ViewModel = function() {
 		var markers = [];
 		for (var i = 0; i < self.viennaList().length; i++) {
 			self.viennaList()[i].marker = new google.maps.Marker({
-				position: new google.maps.LatLng(self.viennaList()[i]['coordinates']['lat'], self.viennaList()[i]['coordinates']['lng']),
+				position: new google.maps.LatLng(self.viennaList()[i]
+                    ['coordinates']['lat'],
+                    self.viennaList()[i]['coordinates']['lng']),
 				map: vm.map,
 				visible: true,
 				title: self.viennaList()[i].name,
