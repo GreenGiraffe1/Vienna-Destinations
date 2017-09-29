@@ -54,10 +54,10 @@ function initMap() {
 		zoom: 13,
 		mapTypeControl: false
 	});
-	// vm.makeMarkers(map);
 	vm.makeMarkers();
 	infoWindow1 = new google.maps.InfoWindow({});
 }
+
 
 /**
 * @description Displays an error message if the Goolge Maps API is unreachable
@@ -68,12 +68,17 @@ function googleError() {
 }
 
 
+/**
+* @description Creates an infowindow pop-up on the map portion of the screen
+* providing information about the item which has been clicked on (and
+* subsequently passed to this function). The information to be displayed is
+* retrieved from Wikipedia's API.
+* @param {object} marker - Google Maps location marker
+*/
 function populateInfoWindow(marker) {
-
 	var wikiPageURL = 'https://en.wikipedia.org/w/api.php?action=query&' +
         'format=json&prop=extracts&pageids=' + marker.summaryID +
         '&exintro=1';
-
 	//  Build a timeout function for error handling of the JSON-P request to wikipedia, help can be found here:
 	//  https://classroom.udacity.com/nanodegrees/nd004/parts/135b6edc-f1cd-4cd9-b831-1908ede75737/modules/271165859175460/lessons/3310298553/concepts/31621285920923
 	var wikiRequestTimeout = setTimeout(function() {
@@ -97,12 +102,20 @@ function populateInfoWindow(marker) {
 }
 
 
-// http://knockoutjs.com/documentation/click-binding.html#note-1-passing-a-current-item-as-a-parameter-to-your-handler-function
+/**
+* @description Click event listener on the listview items. Will call program
+* to display information on the map about the clicked item.
+*/
 function listviewClickListener(data, event) {
 	populateInfoWindow(data.marker);
 }
 
 
+/**
+* @description Listens for any user changes to the content of the textbox
+* and upon any change, updates the markers on the map so that only those
+* matching the filter are displayed.
+*/
 $('#Inputer').on('change paste keyup', function() {  //  Conditionally display markers on the map.
 	for (var k = 0; k < vm.viennaList().length; k++ ) {  //  Make all markers invisible
 		vm.viennaList()[k].marker.setMap(null);
@@ -117,11 +130,15 @@ $('#Inputer').on('change paste keyup', function() {  //  Conditionally display m
    	}
 });
 
-var ViewModel = function() {
 
+/**
+* @description Represents the ViewModel which controls flow of events
+* @constructor
+*/
+var ViewModel = function() {
 	var self = this;
 	self.viennaList = ko.observableArray();
-	for (var i = 0; i < ViennaModel.locations.length; i++) {  //  This is the ORIGIN of all information flow
+	for (var i = 0; i < ViennaModel.locations.length; i++) {
 		self.viennaList.push(ViennaModel.locations[i]);
 	}
 
@@ -160,7 +177,6 @@ var ViewModel = function() {
 		}
 	};
 };
-
 
 
 var vm = new ViewModel();
