@@ -99,10 +99,15 @@ function listviewClickListener(data, event) {
 }
 
 
-$("#Inputer").on("change paste keyup", function() {
+$("#Inputer").on("change paste keyup", function() {  //  This is the TRIGGER, for changes to the Displayed Markers
    // console.log($(this).val());
    vm.clearMarkers();
-   vm.makeMarkers();
+   console.log('before');
+	setTimeout(function(){
+    	console.log('after');
+		vm.makeMarkers();
+	},3000);
+   // vm.makeMarkers();
 });
 
 
@@ -165,7 +170,7 @@ var ViewModel = function() {
 
 			console.log(self.markers[i].title);
 			self.markers[i].addListener('click', function() {
-				
+
 				populateInfoWindow(self.markers[i]);
 			});
 
