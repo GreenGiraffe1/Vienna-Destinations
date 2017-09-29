@@ -68,7 +68,7 @@ function googleError() {
 
 
 function populateInfoWindow(marker) {
-	
+
 	var wikiPageURL = "https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&pageids=" + marker.summaryID + "&exintro=1";
 
 	//  Build a timeout function for error handling of the JSON-P request to wikipedia, help can be found here:
@@ -96,6 +96,19 @@ function listviewClickListener(data, event) {
 	populateInfoWindow(data.marker);
 }
 
+
+$("#Inputer").on("change paste keyup", function() {  //  Conditionally display markers on the map.
+	for (var k = 0; k < vm.viennaList().length; k++ ) {  //  Make all markers invisible
+		vm.viennaList()[k].marker.setMap(null);
+	}
+   	for (var i = 0; i < vm.newFilteredList().length; i++) {
+		for (var j = 0; j < vm.viennaList().length; j++ ) {
+			if (vm.viennaList()[j].marker.summaryID === vm.newFilteredList()[i].wikiPageID) {
+				vm.viennaList()[j].marker.setMap(vm.map);  //  Make marker visibile if it is visible in the List-View
+			}
+		}
+   	}
+});
 
 var ViewModel = function() {
 
@@ -126,6 +139,7 @@ var ViewModel = function() {
 			self.viennaList()[i].marker = new google.maps.Marker({
 				position: new google.maps.LatLng(self.viennaList()[i]['coordinates']['lat'], self.viennaList()[i]['coordinates']['lng']),
 				map: vm.map,
+				visible: true,
 				title: self.viennaList()[i].name,
 				summaryID: self.viennaList()[i].wikiPageID,
 				id: i
