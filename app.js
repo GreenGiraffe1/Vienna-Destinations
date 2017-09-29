@@ -56,6 +56,7 @@ function initMap() {
 	});
 	// vm.makeMarkers(map);
 	vm.makeMarkers();
+	// clearMarkers();
 	infoWindow1 = new google.maps.InfoWindow({});
 }
 
@@ -68,7 +69,8 @@ function googleError() {
 
 
 function populateInfoWindow(marker) {
-	
+	console.log(marker);
+
 	var wikiPageURL = "https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&pageids=" + marker.summaryID + "&exintro=1";
 
 	//  Build a timeout function for error handling of the JSON-P request to wikipedia, help can be found here:
@@ -97,6 +99,13 @@ function listviewClickListener(data, event) {
 }
 
 
+$("#Inputer").on("change paste keyup", function() {
+   // console.log($(this).val());
+   vm.clearMarkers();
+   vm.makeMarkers();
+});
+
+
 var ViewModel = function() {
 
 	var self = this;
@@ -104,6 +113,8 @@ var ViewModel = function() {
 	for (var i = 0; i < ViennaModel.locations.length; i++) {  //  This is the ORIGIN of all information flow
 		self.viennaList.push(ViennaModel.locations[i]);
 	}
+
+	self.markers = [];
 
 	self.userText = ko.observable('');
 	self.newFilteredList = ko.computed(function() {
@@ -118,22 +129,56 @@ var ViewModel = function() {
 				return (item.name.search(new RegExp(self.userText(), 'i')) > -1);
 			});
 		}
+		// self.makeMarkers();
+		// console.log('you');
 	});
 
+	// function deleteMarkers() {
+	// 	clearMarkers();
+	// 	markers = [];
+	// }
+
+	self.clearMarkers = function() {
+		// console.log(self.markers.length);
+		for (var i = 0; i < self.markers.length; i++) {
+			self.markers[i].setMap(null);
+
+			// console.log(i);
+		}
+		self.markers = [];
+	};
+
 	self.makeMarkers = function() {
-		var markers = [];
-		for (var i = 0; i < self.viennaList().length; i++) {
-			self.viennaList()[i].marker = new google.maps.Marker({
-				position: new google.maps.LatLng(self.viennaList()[i]['coordinates']['lat'], self.viennaList()[i]['coordinates']['lng']),
+		// console.log('you');
+		// clearMarkers();
+		// self.markers = [];
+
+		for (var i = 0; i < self.newFilteredList().length; i++) {
+			var marker = new google.maps.Marker({
+				position: new google.maps.LatLng(self.newFilteredList()[i]['coordinates']['lat'], self.newFilteredList()[i]['coordinates']['lng']),
 				map: vm.map,
-				title: self.viennaList()[i].name,
-				summaryID: self.viennaList()[i].wikiPageID,
+				title: self.newFilteredList()[i].name,
+				summaryID: self.newFilteredList()[i].wikiPageID,
 				id: i
 			});
-			self.viennaList()[i].marker.addListener('click', function() {
-				populateInfoWindow(this);
+			self.markers.push(marker);
+
+			console.log(self.markers[i].title);
+			self.markers[i].addListener('click', function() {
+				
+				populateInfoWindow(self.markers[i]);
 			});
+
 		}
+
+		// for (var i = 0; i < self.markers.length; i++) {
+		// 	// console.log(self.markers[i]);
+		// 	self.markers[i].addListener('click', function() {
+		//
+		// 		populateInfoWindow(self.markers[i]);
+		// 	});
+		// }
+		// console.log(self.markers.length);
 	};
 };
 
