@@ -1,7 +1,12 @@
 # Vienna Vacation - Neighborhood Map
 
-**Vienna Vacation - Neighborhood Map** is a project that displays my 7 favorite
- vacation destinations in Vienna, and provides some information about each...
+**Vienna Vacation - Neighborhood Map** is a project that displays my favorite
+vacation destinations in Vienna on a custom
+[Google Map](https://www.google.com/maps), and provides some information about
+each retrieved from [Wikipedia's](https://www.wikipedia.org) API when
+corresponding page elements are clicked. The
+[KnockoutJS](http://knockoutjs.com/) framework is used for organization and
+storing information about the destinations, and other page features.
 
 
 ### Setup:
@@ -16,6 +21,7 @@ Detailed Instructions can be found here:
 and that Python is installed. Then, launch **entertainment_center.py**. This
 project was written using Python 2.7. Other versions may produce errors. -->
 
+##### Sub-Usage Explanation:
 
 ### Examples:
 
@@ -32,13 +38,15 @@ For the HTML to display correctly, there must be exactly 6 "Movie" objects. -->
 
 ### Attribution:
 
-<!-- This project was written while I was taking the Udacity Full-Stack Nanodegree,
+This project was created while I was taking the Udacity Full-Stack Nanodegree,
 and significant chunks of the structure / ideas behind the structure were
-provided by the course author. Specifically, the file **fresh\_tomatoes.py**
-was contributed almost in its entirety by the course author. -->
+provided by the course author. I worked closely with Udacity mentor Karol
+to resolve some issues. Significant portions of this project were inspired
+directly from the Udacity course "The Frontend: Javascript & AJAX", Lesson 7
+"Getting Started with API's".
 
 
 ### License:
 
-**movie_trailer_website** is a public domain work, with license
+**Vienna Vacation - Neighborhood Map** is a public domain work, with license
 [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/).
