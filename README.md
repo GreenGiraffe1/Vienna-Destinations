@@ -47,10 +47,10 @@ user-entered text doesn't appear within a locations name.
 
 This project was created while I was taking the Udacity Full-Stack Nanodegree,
 and significant chunks of the structure / ideas behind the structure were
-provided by the course author. I worked closely with Udacity mentor Karol
-to resolve some issues. Significant portions of this project were inspired
+provided by the course author. Significant portions of this project were inspired
 directly from the Udacity course "The Frontend: Javascript & AJAX", Lesson 7
-"Getting Started with API's".
+"Getting Started with API's". I also worked closely with Udacity mentor Karol
+to resolve some issues. 
 
 
 ## License:
