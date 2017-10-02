@@ -4,44 +4,51 @@ var ViennaModel = {
 			name: 'WW2 Flak Tower',
 			coordinates: {lat: 48.22563, lng: 16.372815},
 			wikiPageID: 1369643,
-			officialWikiTitle: null
+			officialWikiTitle: null,
+			wikiUrl: 'Flak_tower'
 		},
 		{
 			name: 'Vienna Rose Garden',
 			coordinates: {lat: 48.208056, lng: 16.361111},
 			wikiPageID: 22533198,
-			officialWikiTitle: null
+			officialWikiTitle: null,
+			wikiUrl: 'Volksgarten,_Vienna'
 
 		},
 		{
 			name: "Mozart's House",
 			coordinates: {lat: 48.207778, lng: 16.375278},
 			wikiPageID: 28369776,
-			officialWikiTitle: null
+			officialWikiTitle: null,
+			wikiUrl: 'Mozarthaus_Vienna'
 		},
 		{
 			name: 'Schonbrunn Palace',
 			coordinates: {lat: 48.184516, lng: 16.311865},
 			wikiPageID: 165202,
-			officialWikiTitle: null
+			officialWikiTitle: null,
+			wikiUrl: 'Schönbrunn_Palace'
 		},
 		{
-			name: 'Vienna Opera House',
+			name: 'Vienna State Opera',
 			coordinates: {lat: 48.202778, lng: 16.369111},
 			wikiPageID: 379066,
-			officialWikiTitle: null
+			officialWikiTitle: null,
+			wikiUrl: 'Vienna_State_Opera'
 		},
 		{
 			name: 'Hofburg Palace',
 			coordinates: {lat: 48.206507, lng: 16.365262},
 			wikiPageID: 1651794,
-			officialWikiTitle: null
+			officialWikiTitle: null,
+			wikiUrl: 'Hofburg'
 		},
 		{
 			name: 'Museum of Military History',
 			coordinates: {lat: 48.185278, lng: 16.3875},
 			wikiPageID: 2680555,
-			officialWikiTitle: null
+			officialWikiTitle: null,
+			wikiUrl: 'Museum_of_Military_History,_Vienna'
 		}
 	]
 };
@@ -93,7 +100,12 @@ function populateInfoWindow(marker) {
 			var wikiSummary = response['query']['pages'][marker.summaryID]
                 ['extract'];
 			infoWindow1.setContent('<h3 id="location-title">' + marker.title +
-                '</h3><div id="summary">' + wikiSummary + '</div>');
+                '</h3><div id="summary">' + wikiSummary + '</div>' +
+				'<div id="attribution">' + 'Information retrieved from ' +
+				'<a href="https://en.wikipedia.org/wiki/' + marker.url +
+				'">' + marker.title + '</a> page on ' +
+				'<a href="https://www.wikipedia.org/">' +
+				'Wikipedia' + '</a></div>');
 			marker.setAnimation(google.maps.Animation.DROP);
 			infoWindow1.open(map, marker);
 			clearTimeout(wikiRequestTimeout);
@@ -169,7 +181,8 @@ var ViewModel = function() {
 				visible: true,
 				title: self.viennaList()[i].name,
 				summaryID: self.viennaList()[i].wikiPageID,
-				id: i
+				id: i,
+				url: self.viennaList()[i].wikiUrl
 			});
 			self.viennaList()[i].marker.addListener('click', function() {
 				populateInfoWindow(this);
