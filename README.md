@@ -8,35 +8,42 @@ corresponding page elements are clicked. The
 [KnockoutJS](http://knockoutjs.com/) framework is used for organization and
 storing information about the destinations, and other page features.
 
+## Setup:
+Begin the setup by making sure you have an active Internet connection, and
+cloning all files from GitHub to the same local directory.
 
-### Setup:
-<!-- Begin the setup by cloning all files to the same directory, and making sure that Python 2.7x is installed. You'll need to create a new Google Cloud Platform Console project or retrieve the project ID of an existing project from the Google Cloud Platform Console. Then install and then initialize the Google Cloud SDK.
+##### If wanting to deploy your this application with your own city / locations, you'll need to:
+* Obtain a [Google Maps API key](https://developers.google.com/maps/documentation/embed/get-api-key)
+* Rename the Knockout Observable Array ```self.ViennaList``` in the ViewModel
+to be more appropriate to your project, and populate it with a location array
+of your own.
+* Set the initial longitude, latitude, and zoom level in the ```initMap()```
+function, to properly display your location(s) when the WebApp is loaded in
+the browser.
+* Re-work the Wikipedia API calls to work with your data
 
-Detailed Instructions can be found here:
-[Google App Engine Documentation](https://cloud.google.com/appengine/docs/python/getting-started/creating-guestbook) -->
+Detailed documentation of the Google Maps Javascript API can be found here:
+[Google Maps JavaScript API](https://developers.google.com/maps/documentation/javascript/)
 
-### Usage:
+Wikipedia's API is documented here: [Wikipedia API](https://www.mediawiki.org/wiki/API:Main_page)
 
-<!-- To begin using this webpage all make sure all files are in the same directory,
-and that Python is installed. Then, launch **entertainment_center.py**. This
-project was written using Python 2.7. Other versions may produce errors. -->
+## Usage:
 
-##### Sub-Usage Explanation:
+To begin using this WebApp, make sure all files are in the same local directory
+and that you have an active Internet connection. Open ```index.html``` in your
+favorite Internet browser, and the WebApp will load. It will display vacation
+destinations in Vienna on a custom Google Map, and in a list on the left-hand
+side. On mobile browsers the list will be hidden, and accessible through a
+hamburger menu in the top left corner of the browser.
 
-### Examples:
+##### Interactivity:
+When the map marker, or name in left-hand menu is clicked an **Info-Window**
+will pop up, and display information about that location. A user may filter
+the list and markers based on their input to the text-box also located in the
+left-hand menu. Both markers and list-items will be filtered out if the
+user-entered text doesn't appear within a locations name.
 
-<!-- If you'd like to display your own favorite movies instead of the ones
-provided, you will need to create new objects for them as below:
-
-```
-movie_identifier = media.Movie("Movie title", "Movie Tag Line",
-                               "Movie Box Art URL", "Movie Trailer URL")
-```
-
-For the HTML to display correctly, there must be exactly 6 "Movie" objects. -->
-
-
-### Attribution:
+## Attribution:
 
 This project was created while I was taking the Udacity Full-Stack Nanodegree,
 and significant chunks of the structure / ideas behind the structure were
@@ -46,7 +53,7 @@ directly from the Udacity course "The Frontend: Javascript & AJAX", Lesson 7
 "Getting Started with API's".
 
 
-### License:
+## License:
 
 **Vienna Vacation - Neighborhood Map** is a public domain work, with license
 [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/).
