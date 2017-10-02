@@ -105,7 +105,7 @@ function populateInfoWindow(marker) {
 				'<a href="https://en.wikipedia.org/wiki/' + marker.url +
 				'">' + marker.title + '</a> page on ' +
 				'<a href="https://www.wikipedia.org/">' +
-				'Wikipedia' + '</a></div>');
+				'Wikipedia' + '</a>.</div>');
 			marker.setAnimation(google.maps.Animation.DROP);
 			infoWindow1.open(map, marker);
 			clearTimeout(wikiRequestTimeout);
