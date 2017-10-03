@@ -46,11 +46,6 @@ body {
 	width: 50px;
 }
 
-/*.container {
-  height: 100%;
-  position: relative;
-}*/
-
 #map {
 	z-index: 15;
   	height: 100%;
@@ -61,7 +56,6 @@ body {
 	z-index: 20;
 	-webkit-transform: translate(0, 0);
 	transform: translate(0, 0);
-	/*-webkit-transform: translateZ(0);*/
 }
 
 @media (min-width: 600px) {

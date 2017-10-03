@@ -123,7 +123,7 @@ function populateInfoWindow(marker) {
 */
 function listviewClickListener(data, event) {
 	populateInfoWindow(data.marker);
-    //  Here, I need to add functionality that shuts the menu - (for mobile). (toggle the menu - call that function)
+    //  Shuts the menu (for mobile) when a list item is clicked
     $('.hamIcon').click();
 }
 
@@ -190,9 +190,7 @@ var ViewModel = function() {
 	* matching the filter are displayed.
 	*/
 	self.userText.subscribe(function() {
-		// alert("Yo, dis changed. The new value is: " + newValue);
 		for (var k = 0; k < self.viennaList().length; k++ ) {
-			// self.viennaList()[k].marker.setMap(null);
 	        self.viennaList()[k].marker.setVisible(false);
 
 		}
@@ -202,7 +200,6 @@ var ViewModel = function() {
 				//  Make marker visibile if it is visible in the List-View
 				if (self.viennaList()[j].marker.summaryID
 	                    === self.newFilteredList()[i].wikiPageID) {
-					// self.viennaList()[j].marker.setMap(vm.map);
 	                self.viennaList()[j].marker.setVisible(true);
 
 				}

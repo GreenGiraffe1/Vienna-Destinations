@@ -13,9 +13,6 @@
 			</div>
 			<br>
         	<h1>Vienna Vacation Destinations</h1>
-			<!-- <div class="">
-				<input type="checkbox" name="toggleMarkers" value="yes" checked>Show Markers?
-			</div> -->
 			<div>
 				<label for="Inputer">Enter Text to Filter List:</label>
 				<input id="Inputer" type="text" data-bind="textInput: userText" value="">
@@ -36,22 +33,24 @@
 		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1mSv0XTcysnwSGaJCjUUbm-eMtFNEZGs&v=3&callback=initMap" onerror="googleError()"></script>
 		<script>
 			//  This Script controls Hamburger icon click actions
+
+			//  selecting DOM elements
 			var burgerIcon = document.querySelector('.hamIcon');
 			var mapBox = document.querySelector('#map');
 			var drawer = document.querySelector('#options-box');
 			var closeIcon = document.querySelector('.closeIcon');
 
+			//  Opens the side menu, on small devices, when the hamburger
+			//  button is clicked.
 			burgerIcon.addEventListener('click', function(e) {
 				drawer.classList.toggle('open');
-				// $('.hamIcon').toggle();
 				e.stopPropagation();
 			});
+			//  Closes the menu, on small devices, when a the map is clicked
 			mapBox.addEventListener('click', function() {
 				drawer.classList.remove('open');
-				// $('.hamIcon').toggle();
-
 			});
-
+			//  Closes the side menu when "X" button is clicked on
 			closeIcon.addEventListener('click', function() {
 				drawer.classList.remove('open');
 			});
