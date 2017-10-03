@@ -8,10 +8,11 @@
 	</head>
 	<body>
       	<div id="options-box" class="left-pane">
+			<img class="closeIcon" src="hamburgerIcon.svg" alt="Close Icon">
         	<h1>Vienna Vacation Destinations</h1>
-			<div class="">
+			<!-- <div class="">
 				<input type="checkbox" name="toggleMarkers" value="yes" checked>Show Markers?
-			</div>
+			</div> -->
 			<div>
 				<label for="Inputer">Enter Text to Filter List:</label>
 				<input id="Inputer" type="text" data-bind="textInput: userText" value="">
@@ -35,6 +36,7 @@
 			var burgerIcon = document.querySelector('.hamIcon');
 			var mapBox = document.querySelector('#map');
 			var drawer = document.querySelector('#options-box');
+			var closeIcon = document.querySelector('.closeIcon');
 
 			burgerIcon.addEventListener('click', function(e) {
 				drawer.classList.toggle('open');
@@ -45,6 +47,10 @@
 				drawer.classList.remove('open');
 				// $('.hamIcon').toggle();
 
+			});
+
+			closeIcon.addEventListener('click', function() {
+				drawer.classList.remove('open');
 			});
 
 		</script>

@@ -39,6 +39,13 @@ body {
 	width: 50px;
 }
 
+.closeIcon {
+	position: fixed;
+	right: 15px;
+	top: 10px;
+	width: 50px;
+}
+
 /*.container {
   height: 100%;
   position: relative;
@@ -74,6 +81,10 @@ body {
 	#map {
 		width: auto;
 		flex-grow: 1;
+	}
+
+	.closeIcon {
+		display: none;
 	}
 
 	.hamIcon {
