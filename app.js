@@ -160,9 +160,8 @@ var ViewModel = function() {
 			return ko.utils.arrayFilter(self.viennaList(), function(item) {
 				//  Returns true if the user input string is found in the name
 				//  of the current item being passed, (case insensitive)
-				//  Uses Regular Expressions to accomplish the matching.
-				return (item.name.search(new RegExp(self.userText(),
-                    'i')) > -1);
+				return (item.name.toLowerCase().indexOf(
+					self.userText().toLowerCase()) > -1);
 			});
 		}
 	});
