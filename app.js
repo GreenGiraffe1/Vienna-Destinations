@@ -129,6 +129,8 @@ function populateInfoWindow(marker) {
 */
 function listviewClickListener(data, event) {
 	populateInfoWindow(data.marker);
+    //  Here, I need to add functionality that shuts the menu - (for mobile). (toggle the menu - call that function)
+    $('.hamIcon').click();
 }
 
 
