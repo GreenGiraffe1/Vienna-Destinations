@@ -218,4 +218,5 @@ var ViewModel = function() {
 var vm = new ViewModel();
 
 
+//  Apply KnockoutJS bindings to the ViewModel instance vm
 ko.applyBindings(vm);

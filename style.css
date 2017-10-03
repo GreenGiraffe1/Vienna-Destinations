@@ -33,7 +33,7 @@ body {
 
 .hamIcon {
 	position: fixed;
-	z-index: 10;
+	z-index: 16;
 	top: 10px;
 	left: 15px;
 	width: 50px;
@@ -45,11 +45,13 @@ body {
 }*/
 
 #map {
-  height: 100%;
-  width: 100%;
+	z-index: 15;
+  	height: 100%;
+  	width: 100%;
 }
 
 #options-box.open {
+	z-index: 20;
 	-webkit-transform: translate(0, 0);
 	transform: translate(0, 0);
 	/*-webkit-transform: translateZ(0);*/
