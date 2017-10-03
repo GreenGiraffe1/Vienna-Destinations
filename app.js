@@ -135,33 +135,6 @@ function listviewClickListener(data, event) {
 
 
 /**
-* @description Listens for any user changes to the content of the textbox
-* and upon any change, updates the markers on the map so that only those
-* matching the filter are displayed.
-*/
-$('#Inputer').on('change paste keyup', function() {
-	//  Make all markers invisible
-	for (var k = 0; k < vm.viennaList().length; k++ ) {
-		// vm.viennaList()[k].marker.setMap(null);
-        vm.viennaList()[k].marker.setVisible(false);
-
-	}
-	//  Loop through 2 arrays, and compare all elements against each other
-   	for (var i = 0; i < vm.newFilteredList().length; i++) {
-		for (var j = 0; j < vm.viennaList().length; j++ ) {
-			//  Make marker visibile if it is visible in the List-View
-			if (vm.viennaList()[j].marker.summaryID
-                    === vm.newFilteredList()[i].wikiPageID) {
-				// vm.viennaList()[j].marker.setMap(vm.map);
-                vm.viennaList()[j].marker.setVisible(true);
-
-			}
-		}
-   	}
-});
-
-
-/**
 * @description Represents the ViewModel which controls flow of events
 * @constructor
 */
@@ -217,6 +190,32 @@ var ViewModel = function() {
 			});
 		}
 	};
+
+	/**
+	* @description Listens for any user changes to the content of the textbox
+	* and upon any change, updates the markers on the map so that only those
+	* matching the filter are displayed.
+	*/
+	self.userText.subscribe(function() {
+		// alert("Yo, dis changed. The new value is: " + newValue);
+		for (var k = 0; k < self.viennaList().length; k++ ) {
+			// self.viennaList()[k].marker.setMap(null);
+	        self.viennaList()[k].marker.setVisible(false);
+
+		}
+		//  Loop through 2 arrays, and compare all elements against each other
+	   	for (var i = 0; i < self.newFilteredList().length; i++) {
+			for (var j = 0; j < self.viennaList().length; j++ ) {
+				//  Make marker visibile if it is visible in the List-View
+				if (self.viennaList()[j].marker.summaryID
+	                    === self.newFilteredList()[i].wikiPageID) {
+					// self.viennaList()[j].marker.setMap(vm.map);
+	                self.viennaList()[j].marker.setVisible(true);
+
+				}
+			}
+	   	}
+	});
 };
 
 
