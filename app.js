@@ -77,7 +77,7 @@ function googleError() {
 * providing information about the item which has been clicked on (and
 * subsequently passed to this function). The information to be displayed is
 * retrieved from Wikipedia's API. If the API can't be reached an error message
-* is displayed after 3 seconds.
+* is displayed.
 * @param {object} marker - Google Maps location marker
 */
 function populateInfoWindow(marker) {
@@ -86,40 +86,34 @@ function populateInfoWindow(marker) {
         '&exintro=1';
 
 	/**
-	* @description Ttimeout function for error handling of the JSON-P requests
-	* to wikipedia. Error message displayed after 3 seconds
-	*/
-	var wikiRequestTimeout = setTimeout(function() {
-		infoWindow1.setContent('<h3 id="location-title">' + marker.title +
-            '</h3><div>(Failed to get Wikipedia Resources)</div>');
-		marker.setAnimation(google.maps.Animation.DROP);
-		infoWindow1.open(map, marker);
-	}, 3000);
-
-	/**
 	* @description Queries the Wikipedia API for information about locations.
-	* If successful, it clears the timeout function, and appends the
-	* information to the info-window.
+	* If successful, it appends the information to the info-window. If
+	* unsuccessful it returns an error message.
 	* @param {string} url - API url with page ID parameter
 	* @param {string} dataType - tells the API what type of request is being
 	* made
 	*/
-	$.ajax({ url : wikiPageURL, dataType : 'jsonp',
-		success : function(response) {
-			var wikiSummary = response['query']['pages'][marker.summaryID]
-                ['extract'];
-			infoWindow1.setContent('<h3 id="location-title">' + marker.title +
-                '</h3><div id="summary">' + wikiSummary + '</div>' +
-				'<div id="attribution">' + 'Information retrieved from ' +
-				'<a href="https://en.wikipedia.org/wiki/' + marker.url +
-				'">' + marker.title + '</a> page on ' +
-				'<a href="https://www.wikipedia.org/">' +
-				'Wikipedia' + '</a>.</div>');
-			marker.setAnimation(google.maps.Animation.DROP);
-			infoWindow1.open(map, marker);
-			clearTimeout(wikiRequestTimeout);
-		}
-	});
+	$.ajax({ url : wikiPageURL, dataType : 'jsonp'
+	}).done	(function (response) {
+		//  Do this if all works as it should
+		var wikiSummary = response['query']['pages'][marker.summaryID]
+			['extract'];
+		infoWindow1.setContent('<h3 id="location-title">' + marker.title +
+			'</h3><div id="summary">' + wikiSummary + '</div>' +
+			'<div id="attribution">' + 'Information retrieved from ' +
+			'<a href="https://en.wikipedia.org/wiki/' + marker.url +
+			'">' + marker.title + '</a> page on ' +
+			'<a href="https://www.wikipedia.org/">' +
+			'Wikipedia' + '</a>.</div>');
+		marker.setAnimation(google.maps.Animation.DROP);
+		infoWindow1.open(map, marker);
+	}).fail(function () {
+		//  Do this if encountering an error
+		infoWindow1.setContent('<h3 id="location-title">' + marker.title +
+			'</h3><div>(Failed to get Wikipedia Resources)</div>');
+		marker.setAnimation(google.maps.Animation.DROP);
+		infoWindow1.open(map, marker);
+	})
 }
 
 
