@@ -142,7 +142,9 @@ function listviewClickListener(data, event) {
 $('#Inputer').on('change paste keyup', function() {
 	//  Make all markers invisible
 	for (var k = 0; k < vm.viennaList().length; k++ ) {
-		vm.viennaList()[k].marker.setMap(null);
+		// vm.viennaList()[k].marker.setMap(null);
+        vm.viennaList()[k].marker.setVisible(false);
+
 	}
 	//  Loop through 2 arrays, and compare all elements against each other
    	for (var i = 0; i < vm.newFilteredList().length; i++) {
@@ -150,7 +152,9 @@ $('#Inputer').on('change paste keyup', function() {
 			//  Make marker visibile if it is visible in the List-View
 			if (vm.viennaList()[j].marker.summaryID
                     === vm.newFilteredList()[i].wikiPageID) {
-				vm.viennaList()[j].marker.setMap(vm.map);
+				// vm.viennaList()[j].marker.setMap(vm.map);
+                vm.viennaList()[j].marker.setVisible(true);
+
 			}
 		}
    	}
