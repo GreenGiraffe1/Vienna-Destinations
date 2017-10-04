@@ -53,8 +53,8 @@ var ViennaModel = {
 */
 function initMap() {
 	vm.map = new google.maps.Map(document.getElementById('map'), {
-		center: {lat: 48.205, lng: 16.366667},
-		zoom: 13,
+		center: {lat: 48.205, lng: 16.354},
+		zoom: 12,
 		mapTypeControl: false
 	});
 	vm.makeMarkers();
