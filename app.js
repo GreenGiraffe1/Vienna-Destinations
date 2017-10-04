@@ -96,8 +96,8 @@ function populateInfoWindow(marker) {
 	$.ajax({ url : wikiPageURL, dataType : 'jsonp'
 	}).done	(function (response) {
 		//  Do this if all works as it should
-		var wikiSummary = response['query']['pages'][marker.summaryID]
-			['extract'];
+        var sumIdPassThrough = marker.summaryID;
+        var wikiSummary = response.query.pages[sumIdPassThrough].extract;
 		infoWindow1.setContent('<h3 id="location-title">' + marker.title +
 			'</h3><div id="summary">' + wikiSummary + '</div>' +
 			'<div id="attribution">' + 'Information retrieved from ' +
