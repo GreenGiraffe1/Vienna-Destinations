@@ -47,10 +47,13 @@ user-entered text doesn't appear within a locations name.
 
 This project was created while I was taking the Udacity Full-Stack Nanodegree,
 and significant chunks of the structure / ideas behind the structure were
-provided by the course author. Significant portions of this project were inspired
-directly from the Udacity course "The Frontend: Javascript & AJAX", Lesson 7
-"Getting Started with API's". I also worked closely with Udacity mentor Karol
-to resolve some issues. 
+provided by the course author. Significant portions of this project were
+inspired directly from the Udacity course "The Frontend: Javascript & AJAX",
+Lesson 7 "Getting Started with API's". For my hamburger menu implementation I
+drew heavily from the course / example in "Programming Fundamentals",
+Lesson 21 "Common Responsive Patterns", Segment 9 "Pattern - Off Canvas".
+Also, Udacity mentors Karol and Tamás Krasser helped me trouble-shoot quite
+a few issues. 
 
 
 ## License:
