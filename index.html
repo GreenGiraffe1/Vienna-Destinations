@@ -40,6 +40,7 @@
 			var drawer = document.querySelector('#options-box');
 			var closeIcon = document.querySelector('.closeIcon');
 
+
 			//  Opens the side menu, on small devices, when the hamburger
 			//  button is clicked.
 			burgerIcon.addEventListener('click', function(e) {
@@ -53,6 +54,11 @@
 			//  Closes the side menu when "X" button is clicked on
 			closeIcon.addEventListener('click', function() {
 				drawer.classList.remove('open');
+			});
+
+			mapBox.addEventListener('click', function() {
+				infoWindow1.close();
+				// alert('yo');
 			});
 		</script>
 	</body>
