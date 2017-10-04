@@ -53,7 +53,7 @@ Lesson 7 "Getting Started with API's". For my hamburger menu implementation I
 drew heavily from the course / example in "Programming Fundamentals",
 Lesson 21 "Common Responsive Patterns", Segment 9 "Pattern - Off Canvas".
 Heavy usage was made of information from the Google Maps, and Wikipedia APIs.
-Also, Udacity mentors Karol and Tamás Krasser helped me trouble-shoot quite
+Also, Udacity mentors Karol Zyskowski and Tamás Krasser helped me trouble-shoot quite
 a few issues.
 
 
