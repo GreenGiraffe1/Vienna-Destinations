@@ -48,7 +48,7 @@ var ViennaModel = {
 
 
 /**
-* @description: Creates a new map object - only center and zoom are required
+* @description Creates a new map object - only center and zoom are required
 * @constructor
 */
 function initMap() {
@@ -64,7 +64,7 @@ function initMap() {
 
 
 /**
-* @description: Displays an error message if the Goolge Maps API is unreachable
+* @description Displays an error message if the Goolge Maps API is unreachable
 */
 function googleError() {
 	var errorMsg = '<div>Error - Google Maps cannot be reached</div>';
@@ -73,7 +73,7 @@ function googleError() {
 
 
 /**
-* @description: Creates an infowindow pop-up on the map portion of the screen
+* @description Creates an infowindow pop-up on the map portion of the screen
 * providing information about the item which has been clicked on (and
 * subsequently passed to this function). The information to be displayed is
 * retrieved from Wikipedia's API. If the API can't be reached an error message
@@ -86,7 +86,7 @@ function populateInfoWindow(marker) {
 		'&exintro=1';
 
 	/**
-	* @description: Queries the Wikipedia API for information about locations.
+	* @description Queries the Wikipedia API for information about locations.
 	* If successful, it appends the information to the info-window. If
 	* unsuccessful it returns an error message.
 	* @param {string} url - API url with page ID parameter
@@ -118,7 +118,7 @@ function populateInfoWindow(marker) {
 
 
 /**
-* @description: Click event listener on the listview items. Will call program
+* @description Click event listener on the listview items. Will call program
 * to display information on the map about the clicked item.
 */
 function listviewClickListener(data, event) {
@@ -129,7 +129,7 @@ function listviewClickListener(data, event) {
 
 
 /**
-* @description: Represents the ViewModel which controls flow of events
+* @description Represents the ViewModel which controls flow of events
 * @constructor
 */
 var ViewModel = function() {
@@ -142,10 +142,10 @@ var ViewModel = function() {
 	self.userText = ko.observable('');
 
 	/**
-	* @description: KO computed observable uses matching logic to control which
+	* @description KO computed observable uses matching logic to control which
 	*  markers and list items are visible on the DOM.
-	* @returns: Conditionally the initial viennaList() array, or a filtered
-	* subset of it
+	* @returns {array} - Conditionally returns either the initial viennaList()
+	* array, or a filtered subset of it
 	*/
 	self.newFilteredList = ko.computed(function() {
 		if (!self.userText()) {
@@ -163,7 +163,7 @@ var ViewModel = function() {
 	});
 
 	/**
-	* @description: Create Google Maps Marker objects, and create a click-event
+	* @description Create Google Maps Marker objects, and create a click-event
 	* listener for each.
 	* @constructor
 	*/
@@ -187,7 +187,7 @@ var ViewModel = function() {
 	};
 
 	/**
-	* @description: Listens for any user changes to the content of the textbox
+	* @description Listens for any user changes to the content of the textbox
 	* and upon any change, updates the markers on the map so that only those
 	* matching the filter are displayed.
 	*/
