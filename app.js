@@ -82,8 +82,8 @@ function googleError() {
 */
 function populateInfoWindow(marker) {
 	var wikiPageURL = 'https://en.wikipedia.org/w/api.php?action=query&' +
-        'format=json&prop=extracts&pageids=' + marker.summaryID +
-        '&exintro=1';
+		'format=json&prop=extracts&pageids=' + marker.summaryID +
+		'&exintro=1';
 
 	/**
 	* @description Queries the Wikipedia API for information about locations.
@@ -123,8 +123,8 @@ function populateInfoWindow(marker) {
 */
 function listviewClickListener(data, event) {
 	populateInfoWindow(data.marker);
-    //  Shuts the menu (for mobile) when a list item is clicked
-    $('.hamIcon').click();
+	//  Shuts the menu (for mobile) when a list item is clicked
+	$('.hamIcon').click();
 }
 
 
@@ -170,8 +170,8 @@ var ViewModel = function() {
 		for (var i = 0; i < self.viennaList().length; i++) {
 			self.viennaList()[i].marker = new google.maps.Marker({
 				position: new google.maps.LatLng(self.viennaList()[i]
-                    ['coordinates']['lat'],
-                    self.viennaList()[i]['coordinates']['lng']),
+					['coordinates']['lat'],
+					self.viennaList()[i]['coordinates']['lng']),
 				map: vm.map,
 				title: self.viennaList()[i].name,
 				summaryID: self.viennaList()[i].wikiPageID,
@@ -191,20 +191,20 @@ var ViewModel = function() {
 	*/
 	self.userText.subscribe(function() {
 		for (var k = 0; k < self.viennaList().length; k++ ) {
-	        self.viennaList()[k].marker.setVisible(false);
+			self.viennaList()[k].marker.setVisible(false);
 
 		}
 		//  Loop through 2 arrays, and compare all elements against each other
-	   	for (var i = 0; i < self.newFilteredList().length; i++) {
+		for (var i = 0; i < self.newFilteredList().length; i++) {
 			for (var j = 0; j < self.viennaList().length; j++ ) {
 				//  Make marker visibile if it is visible in the List-View
 				if (self.viennaList()[j].marker.summaryID
-	                    === self.newFilteredList()[i].wikiPageID) {
-	                self.viennaList()[j].marker.setVisible(true);
+						=== self.newFilteredList()[i].wikiPageID) {
+					self.viennaList()[j].marker.setVisible(true);
 
 				}
 			}
-	   	}
+		}
 	});
 };
 
