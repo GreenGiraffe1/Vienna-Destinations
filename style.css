@@ -29,6 +29,7 @@ body {
   -webkit-transform: translate(-300px, 0);
   transform: translate(-300px, 0);
   transition: transform 0.3s ease;
+  overflow: scroll;
 }
 
 .hamIcon {
