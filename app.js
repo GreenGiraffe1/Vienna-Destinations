@@ -113,7 +113,7 @@ function populateInfoWindow(marker) {
 			'</h3><div>(Failed to get Wikipedia Resources)</div>');
 		marker.setAnimation(google.maps.Animation.DROP);
 		infoWindow1.open(map, marker);
-	})
+	});
 }
 
 
@@ -171,9 +171,8 @@ var ViewModel = function() {
 		var markers = [];
 		for (var i = 0; i < self.viennaList().length; i++) {
 			self.viennaList()[i].marker = new google.maps.Marker({
-				position: new google.maps.LatLng(self.viennaList()[i]
-					['coordinates']['lat'],
-					self.viennaList()[i]['coordinates']['lng']),
+				position: new google.maps.LatLng(self.viennaList()[i].coordinates.lat,
+					self.viennaList()[i].coordinates.lng),
 				map: vm.map,
 				title: self.viennaList()[i].name,
 				summaryID: self.viennaList()[i].wikiPageID,
@@ -200,8 +199,7 @@ var ViewModel = function() {
 		for (var i = 0; i < self.newFilteredList().length; i++) {
 			for (var j = 0; j < self.viennaList().length; j++ ) {
 				//  Make marker visibile if it is visible in the List-View
-				if (self.viennaList()[j].marker.summaryID
-						=== self.newFilteredList()[i].wikiPageID) {
+				if (self.viennaList()[j].marker.summaryID === self.newFilteredList()[i].wikiPageID) {
 					self.viennaList()[j].marker.setVisible(true);
 
 				}
