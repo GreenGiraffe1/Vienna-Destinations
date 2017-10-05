@@ -162,6 +162,15 @@ var ViewModel = function() {
 		}
 	});
 
+    /**
+	* @description Handle click-event from markers, and call function that
+    * will create an info-window
+    * @param {object} e - Marker object passed from self.makeMarkers() function
+	*/
+    self.handleClickEvents = function(e) {
+        populateInfoWindow(this);
+    };
+
 	/**
 	* @description Create Google Maps Marker objects, and create a click-event
 	* listener for each.
@@ -179,9 +188,7 @@ var ViewModel = function() {
 				id: i,
 				url: self.viennaList()[i].wikiUrl
 			});
-			self.viennaList()[i].marker.addListener('click', function() {
-				populateInfoWindow(this);
-			});
+            self.viennaList()[i].marker.addListener('click', self.handleClickEvents);
 		}
 	};
 
