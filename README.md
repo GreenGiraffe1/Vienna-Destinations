@@ -1,6 +1,6 @@
-# Vienna Vacation - Neighborhood Map
+# Vienna Destinations Web App
 
-**Vienna Vacation - Neighborhood Map** is a project that displays my favorite
+**Vienna Destinations Web App** is a project that displays my favorite
 vacation destinations in Vienna on a custom
 [Google Map](https://www.google.com/maps), and provides some information about
 each retrieved from [Wikipedia's](https://www.wikipedia.org) API when
@@ -59,5 +59,5 @@ a few issues.
 
 ## License:
 
-**Vienna Vacation - Neighborhood Map** is a public domain work, with license
+**Vienna Destinations Web App** is a public domain work, with license
 [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/).
