@@ -1,86 +1,82 @@
+/*Site Wide*/
 html,
 body {
-	font-family: Arial, sans-serif;
-	height: 100%;
-	width: 100%;
+    font-family: Arial, sans-serif;
+    height: 100%;
+    width: 100%;
 }
-
 #options-box,#map {
-	padding: 1em;
-	box-sizing: border-box;
+    padding: 1em;
+    box-sizing: border-box;
 }
 
-.item {
-	margin-left: 20px;
-}
-
+/*Left-side Options Section*/
 #options-box {
-	background: #fff;
-	border: 1px solid #999;
-	border-radius: 3px;
-	height: 100%;
-	line-height: 35px;
-	padding: 10px 10px 30px 10px;
-	text-align: left;
-	width: 300px;
-	position: absolute;
-	-webkit-transform: translate(-300px, 0);
-	transform: translate(-300px, 0);
-	transition: transform 0.3s ease;
-	overflow: scroll;
+    background: #fff;
+    border: 1px solid #999;
+    border-radius: 3px;
+    height: 100%;
+    line-height: 35px;
+    padding: 10px 10px 30px 10px;
+    text-align: left;
+    width: 300px;
+    position: absolute;
+    -webkit-transform: translate(-300px, 0);
+    transform: translate(-300px, 0);
+    transition: transform 0.3s ease;
+    overflow: scroll;
 }
-
-.hamIcon {
-	position: fixed;
-	z-index: 16;
-	top: 15px;
-	left: 15px;
-	width: 50px;
-}
-
-.closeIcon {
-	position: fixed;
-	right: 10px;
-	top: 10px;
-	width: 50px;
-}
-
-#map {
-	z-index: 15;
-	height: 100%;
-	width: 100%;
-}
-
 #options-box.open {
-	z-index: 20;
-	-webkit-transform: translate(0, 0);
-	transform: translate(0, 0);
+    z-index: 20;
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
+}
+.hamIcon {
+    position: fixed;
+    z-index: 16;
+    top: 15px;
+    left: 15px;
+    width: 50px;
+}
+.closeIcon {
+    position: fixed;
+    right: 10px;
+    top: 10px;
+    width: 50px;
 }
 
+/*Right-side Map Section*/
+#map {
+    z-index: 15;
+    height: 100%;
+    width: 100%;
+}
+
+/*Media Query to Hide (Hamburger) Menu Section*/
 @media (min-width: 600px) {
-	#options-box {
-		position: relative;
-		-webkit-transform: translate(0, 0);
-		transform: translate(0, 0);
-	}
+    #options-box {
+        position: relative;
+        -webkit-transform: translate(0, 0);
+        transform: translate(0, 0);
+    }
 
-	body {
-		display: -webkit-flex;
-		display: flex;
-		-webkit-flex-flow: row nowrap;
-		flex-flow: row nowrap;
-	}
+    body {
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-flow: row nowrap;
+        flex-flow: row nowrap;
+    }
 
-	#map {
-		width: auto;
-		flex-grow: 1;
-	}
+    #map {
+        width: auto;
+        flex-grow: 1;
+    }
 
-	.closeIcon {
-		display: none;
-	}
+    .closeIcon {
+        display: none;
+    }
 
-	.hamIcon {
-		display: none;
-	}
+    .hamIcon {
+        display: none;
+    }
 }
