@@ -59,5 +59,5 @@ trouble-shoot quite a few issues.
 
 ## License:
 
-**Vienna Destinations Web App** is a public domain work, with license
-[CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/).
+**Vienna Destinations Web App** is an open source project created under the
+[MIT License](https://github.com/GreenGiraffe1/Vienna-Destinations-Web-App/blob/master/LICENSE).
