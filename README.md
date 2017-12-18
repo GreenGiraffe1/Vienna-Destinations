@@ -1,6 +1,6 @@
-# Vienna Destinations Web App
+# Vienna Destinations
 
-**Vienna Destinations Web App** is a project that displays my favorite
+**Vienna Destinations** is a single page web app that displays my favorite
 vacation destinations in Vienna on a custom
 [Google Map](https://www.google.com/maps), and provides some information about
 each retrieved from [Wikipedia's](https://www.wikipedia.org) API when
@@ -59,5 +59,5 @@ trouble-shoot quite a few issues.
 
 ## License:
 
-**Vienna Destinations Web App** is an open source project created under the
+**Vienna Destinations** is an open source project created under the
 [MIT License](https://github.com/GreenGiraffe1/Vienna-Destinations-Web-App/blob/master/LICENSE).
