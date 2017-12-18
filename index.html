@@ -1,64 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>Neighborhood Map REFACTOR</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="style.css">
-	</head>
-	<body>
-		<div id="options-box" class="left-pane">
-			<div class="">
-				<img class="closeIcon" src="closeicon.svg" alt="Close Icon">
-			</div>
-			<br>
-        	<h1>Vienna Vacation Destinations</h1>
-			<div>
-				<label for="Inputer">Enter Text to Filter List:</label>
-				<input id="Inputer" type="text" data-bind="textInput: userText" value="">
-			</div>
-       		<hr>
-       		<div class="list-class">
-				<h3>Locations List:</h3>
-				<ul data-bind="foreach: newFilteredList">
-					<li class="list-item" data-bind="text: name, click: listviewClickListener"></li>
-				</ul>
-           	</div>
-       	</div>
-		<div id="map"></div>
-		<img class="hamIcon" src="hamburgericon.svg" alt="Hamburger Icon">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.1/knockout-min.js"></script>
-		<script src="app.js"></script>
-		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1mSv0XTcysnwSGaJCjUUbm-eMtFNEZGs&v=3&callback=initMap" onerror="googleError()"></script>
-		<script>
-			//  This Script controls Hamburger icon click actions
+    <head>
+        <meta charset="utf-8">
+        <title>Vienna Destinations</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div id="options-box" class="left-pane">
+            <div class="">
+                <img class="closeIcon" src="closeicon.svg" alt="Close Icon">
+            </div>
+            <br>
+            <h1>Vienna Destinations</h1>
+            <div>
+                <label for="Inputer">Enter Text to Filter List:</label>
+                <input id="Inputer" type="text" data-bind="textInput: userText" value="">
+            </div>
+               <hr>
+               <div class="list-class">
+                <h3>Locations List:</h3>
+                <ul data-bind="foreach: newFilteredList">
+                    <li class="list-item" data-bind="text: name, click: listviewClickListener"></li>
+                </ul>
+               </div>
+           </div>
+        <div id="map"></div>
+        <img class="hamIcon" src="hamburgericon.svg" alt="Hamburger Icon">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.1/knockout-min.js"></script>
+        <script src="app.js"></script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1mSv0XTcysnwSGaJCjUUbm-eMtFNEZGs&v=3&callback=initMap" onerror="googleError()"></script>
+        <script>
+            //  This Script controls Hamburger icon click actions
 
-			//  selecting DOM elements
-			var burgerIcon = document.querySelector('.hamIcon');
-			var mapBox = document.querySelector('#map');
-			var drawer = document.querySelector('#options-box');
-			var closeIcon = document.querySelector('.closeIcon');
+            //  selecting DOM elements
+            var burgerIcon = document.querySelector('.hamIcon');
+            var mapBox = document.querySelector('#map');
+            var drawer = document.querySelector('#options-box');
+            var closeIcon = document.querySelector('.closeIcon');
 
 
-			//  Opens the side menu, on small devices, when the hamburger
-			//  button is clicked.
-			burgerIcon.addEventListener('click', function(e) {
-				drawer.classList.toggle('open');
-				e.stopPropagation();
-			});
-			//  Closes the menu, on small devices, when a the map is clicked
-			mapBox.addEventListener('click', function() {
-				drawer.classList.remove('open');
-			});
-			//  Closes the side menu when "X" button is clicked on
-			closeIcon.addEventListener('click', function() {
-				drawer.classList.remove('open');
-			});
-			//  Closes any open infowindow if the map element is clicked on
-			mapBox.addEventListener('click', function() {
-				infoWindow1.close();
-			});
-		</script>
-	</body>
+            //  Opens the side menu, on small devices, when the hamburger
+            //  button is clicked.
+            burgerIcon.addEventListener('click', function(e) {
+                drawer.classList.toggle('open');
+                e.stopPropagation();
+            });
+            //  Closes the menu, on small devices, when a the map is clicked
+            mapBox.addEventListener('click', function() {
+                drawer.classList.remove('open');
+            });
+            //  Closes the side menu when "X" button is clicked on
+            closeIcon.addEventListener('click', function() {
+                drawer.classList.remove('open');
+            });
+            //  Closes any open infowindow if the map element is clicked on
+            mapBox.addEventListener('click', function() {
+                infoWindow1.close();
+            });
+        </script>
+    </body>
 </html>
