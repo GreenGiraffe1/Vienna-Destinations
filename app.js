@@ -101,19 +101,20 @@ function populateInfoWindow(marker) {
         //  Do this if all works as it should
         var sumIdPassThrough = marker.summaryID;
         var wikiSummary = response.query.pages[sumIdPassThrough].extract;
-        infoWindow1.setContent('<h3 id="location-title">' + marker.title +
-            '</h3><div id="summary">' + wikiSummary + '</div>' +
+        var wikiPageImage = response.query.pages[sumIdPassThrough].original.source;
+        infoWindow1.setContent('<div id="iw_container"><h3 id="location-title">' + marker.title +
+            '</h3><img class="image" src="' + wikiPageImage + '" alt="Main Page Image"><div id="summary">' + wikiSummary + '</div>' +
             '<div id="attribution">' + 'Information retrieved from ' +
             '<a href="https://en.wikipedia.org/wiki/' + marker.url +
             '">' + marker.title + '</a> page on ' +
             '<a href="https://www.wikipedia.org/">' +
-            'Wikipedia' + '</a>.</div>');
+            'Wikipedia' + '</a>.</div></div>');
         marker.setAnimation(google.maps.Animation.DROP);
         infoWindow1.open(map, marker);
     }).fail(function () {
         //  Do this if encountering an error
-        infoWindow1.setContent('<h3 id="location-title">' + marker.title +
-            '</h3><div>(Failed to get Wikipedia Resources)</div>');
+        infoWindow1.setContent('<div id="iw_container"><h3 id="location-title">' + marker.title +
+            '</h3><div>(Failed to get Wikipedia Resources)</div></div>');
         marker.setAnimation(google.maps.Animation.DROP);
         infoWindow1.open(map, marker);
     });
