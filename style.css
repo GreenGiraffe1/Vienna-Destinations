@@ -10,8 +10,10 @@ body {
     box-sizing: border-box;
 }
 .image {
-    /* margin: 0 auto; */
-    max-height: 400px;
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 60vh;
 }
 /*Left-side Options Section*/
 #options-box {
