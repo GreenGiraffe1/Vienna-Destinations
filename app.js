@@ -81,9 +81,6 @@ function googleError() {
 * @param {object} marker - Google Maps location marker
 */
 function populateInfoWindow(marker) {
-    // var wikiPageURL = 'https://en.wikipedia.org/w/api.php?action=query&' +
-    //     'format=json&prop=extracts&pageids=' + marker.summaryID +
-    //     '&exintro=1';
     var wikiPageURL = 'https://en.wikipedia.org/w/api.php?action=query&' +
         'prop=extracts|pageimages&format=json&piprop=original&exintro=1&' +
         'pageids=' + marker.summaryID;
